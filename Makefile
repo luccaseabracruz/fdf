@@ -34,19 +34,17 @@ BUILD_PATH          = build
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
-)
 # SRCS_BONUS = $(addprefix $(SRCS_BONUS_PATH)/, \
 #     main_bonus.c    children_utils_bonus.c    init_data_bonus.c \
 #     clean_bonus.c   get_path.c utils.c \
-# )
+)
 
 # Object files
 OBJS       = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS:.c=.o)))
 # OBJS_BONUS = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS_BONUS:.c=.o)))
 
 # Marks
-# MANDATORY_MARK = .mandatory
-# BONUS_MARK     = .bonus
+MANDATORY_MARK = .mandatory
 
 # Compiler and flags
 CC     = cc
@@ -68,13 +66,18 @@ LIBFT_NAME = $(LIBFT_PATH)/libft.a
 #                                    RULES                                     #
 #==============================================================================#
 
-.PHONY: all clean fclean re #bonus
+
+.PHONY: all clean fclean re bonus
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_NAME)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_NAME) -o $@
-	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME).$(RESET)"
+$(NAME): $(MANDATORY_MARK)
+
+$(MANDATORY_MARK): $(OBJS) $(LIBFT_NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_NAME) -o $(NAME)
+	@$(RM) $(BONUS_MARK)
+	@$(TC) $(MANDATORY_MARK)
+	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
 
 $(BUILD_PATH)/%.o: $(SRCS_PATH)/%.c | $(BUILD_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -96,7 +99,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-# 	@$(RM) $(BONUS_MARK)
+  @$(RM) $(MANDATORY_MARK)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: executable $(NAME) removed.$(RESET)"
 
 # bonus: $(BONUS_MARK)
