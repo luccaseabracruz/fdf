@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/18 12:07:52 by lseabra-          #+#    #+#              #
-#    Updated: 2025/08/18 12:09:09 by lseabra-         ###   ########.fr        #
+#    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
+#    Updated: 2025/08/22 14:42:33 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,29 +28,36 @@ NAME                = fdf
 PROJECT_NAME        = FDF
 
 # Paths
+INC_PATH = includes
 SRCS_PATH           = srcs
 # SRCS_BONUS_PATH     = srcs_bonus
 BUILD_PATH          = build
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
-	main.c \
+		main.c \
 )
-# SRCS_BONUS = $(addprefix $(SRCS_BONUS_PATH)/, \
-# 	main_bonus.c \
-# )
 
 # Object files
 OBJS       = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS:.c=.o)))
-# OBJS_BONUS = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS_BONUS:.c=.o)))
 
-# Marks
-MANDATORY_MARK = .mandatory
-# BONUS_MARK     = .bonus
+# LIBFT
+LIBFT_PATH = libft
+LIBFT_LINK = ft
+LIBFT_NAME = $(LIBFT_PATH)/lib$(LIBFT_LINK).a
+
+# MINILIBX
+MLX_PATH = minilibx-linux
+MLX_LINK = mlx
+MLX_NAME = $(MLX_PATH)/lib$(MLX_LINK).a
 
 # Compiler and flags
-CC     = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
+CFLAGS =	-Wall -Wextra -Werror -g \
+			-I$(INC_PATH) -I$(LIBFT_PATH)/$(INC_PATH) -I$(MLX_PATH)
+LDFLAGS =	-L$(LIBFT_PATH) -l$(LIBFT_LINK) \
+			-L$(MLX_PATH) -l$(MLX_LINK) \
+			-L/usr/lib  -lXext -lX11 -lm -lz
 
 # Utility commands
 TC      = touch
@@ -60,10 +67,6 @@ AR      = ar rcs
 MKDIR_P = mkdir -p
 MAKE    = make --no-print-directory
 
-# LIBFT
-LIBFT_PATH = libft
-LIBFT_NAME = $(LIBFT_PATH)/libft.a
-
 #==============================================================================#
 #                                    RULES                                     #
 #==============================================================================#
@@ -72,19 +75,12 @@ LIBFT_NAME = $(LIBFT_PATH)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(MANDATORY_MARK)
-
-$(MANDATORY_MARK): $(OBJS) $(LIBFT_NAME)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_NAME) -o $(NAME)
-	@$(RM) $(BONUS_MARK)
-	@$(TC) $(MANDATORY_MARK)
+$(NAME):  $(OBJS) $(LIBFT_NAME) $(MLX_NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
 
 $(BUILD_PATH)/%.o: $(SRCS_PATH)/%.c | $(BUILD_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(BUILD_PATH)/%.o: $(SRCS_BONUS_PATH)/%.c | $(BUILD_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< $(LDFLAGS) -o $@
 
 $(BUILD_PATH):
 	@$(MKDIR_P) $(BUILD_PATH)
@@ -93,23 +89,17 @@ $(BUILD_PATH):
 $(LIBFT_NAME):
 	@$(MAKE) -C $(LIBFT_PATH) bonus
 
+
+$(MLX_NAME):
+	@$(MAKE) -C $(MLX_PATH)
+
 clean:
 	@$(MAKE) -C $(LIBFT_PATH) fclean
+	@$(MAKE) -C $(MLX_PATH) clean
 	@$(RM_DIR) $(BUILD_PATH)
-	@echo "$(GREEN)[$(PROJECT_NAME)] Cleaned build files $(RESET)"
+	@echo "$(GREEN)[$(PROJECT_NAME)] Clean: build files removed.$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(BONUS_MARK)
-	@$(RM) $(MANDATORY_MARK)
-	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: Executable $(NAME) removed $(RESET)"
+	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: executable '$(NAME)' removed.$(RESET)"
 
-bonus: $(BONUS_MARK)
-
-$(BONUS_MARK): $(OBJS_BONUS) $(LIBFT_NAME)
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT_NAME) -o $(NAME)
-	@$(RM) $(MANDATORY_MARK)
-	@$(TC) $(BONUS_MARK)
-	@echo "$(GREEN)[$(PROJECT_NAME)] Bonus executable compiled: $(NAME)$(RESET)"
-
-re: fclean all
