@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/08/22 14:42:33 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/08/23 12:49:13 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ BUILD_PATH          = build
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
-		main.c \
+		main.c parse.c \
 )
 
 # Object files

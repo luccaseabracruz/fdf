@@ -57,3 +57,7 @@ dkms.conf
 
 # marks
 .bonus
+
+# minilibx-linux
+Makefile.gen
+mlx-test

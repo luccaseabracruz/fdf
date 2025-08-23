@@ -5,24 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/18 10:13:06 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/08/22 14:58:52 by lseabra-         ###   ########.fr       */
+/*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
+/*   Updated: 2025/08/23 13:09:11 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "fdf.h"
 #include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 700, 500, "FDF");
-	mlx_loop(mlx);
-
-	
-	ft_printf("%p\n", &mlx_win);
+	if (argc !=2)
+	{
+		ft_putstr_fd("Error: invalid input.\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
+	else if (!validate_format(argv[1], ".fdf"))
+	{
+		ft_putstr_fd("Error: invalid map extension.\n", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
 	return (0);
 }
