@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 11:39:08 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/07/10 11:51:33 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:34:25 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
  * @function get_next_line
  * @brief Reads the next line from a file descriptor.
  *
- * The `get_next_line` function reads a single line from the given file descriptor
- * (`fd`). It uses a static buffer to store leftover data between calls and reads
- * the file in chunks of size `BUFFER_SIZE`. The function dynamically allocates
- * memory for the returned line, which must be freed by the caller.
+ * The `get_next_line` function reads a single line from the given file
+ * descriptor (`fd`). It uses a static buffer to store leftover data between
+ * calls and reads the file in chunks of size `BUFFER_SIZE`. The function
+ * dynamically allocates memory for the returned line, which must be freed by
+ * the caller.
  *
- * @param fd The file descriptor to read from. Must be a valid, open file descriptor.
+ * @param fd The file descriptor to read from. Must be a valid, open file
+ *           descriptor.
  * @return A pointer to a dynamically allocated string containing the next line,
  *         including the newline character (`\n`) if present. Returns `NULL` if:
  *         - The file descriptor is invalid.
@@ -39,7 +41,8 @@
  *
  * @note
  * - The function is not thread-safe due to the use of a static buffer.
- * - The caller is responsible for freeing the memory allocated for the returned line.
+ * - The caller is responsible for freeing the memory allocated for the returned
+ *   line.
  *
  * @example
  * #include <fcntl.h>
