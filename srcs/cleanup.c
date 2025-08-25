@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_win.c                                         :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 18:23:28 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/08/25 16:19:10 by lseabra-         ###   ########.fr       */
+/*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
+/*   Updated: 2025/08/25 16:19:31 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-void	init_win(t_data *dt)
+static void	cleanup_data(t_data *dt)
 {
-	dt->mlx = mlx_init();
-	if (!dt->mlx)
-		exit_with_cleanup(dt, EXIT_FAILURE);
-	dt->mlx_win = mlx_new_window(dt->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_HEADER);
-	if (!dt->mlx_win)
-		exit_with_cleanup(dt, EXIT_FAILURE);
-	dt->mlx_img = mlx_new_image(dt->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!dt->mlx_img)
-		exit_with_cleanup(dt, EXIT_FAILURE);
-	dt->addr = mlx_get_data_addr(
-			dt->mlx_img, &dt->bits_per_pixel, &dt->line_length, &dt->endian);
+	if (dt->mlx_img)
+	{
+		mlx_destroy_image(dt->mlx, dt->mlx_img);
+		dt->mlx_img = NULL;
+	}
+	if (dt->mlx_win)
+	{
+		mlx_destroy_window(dt->mlx, dt->mlx_win);
+		dt->mlx_win = NULL;
+	}
+	if (dt->mlx)
+	{
+		mlx_destroy_display(dt->mlx);
+		dt->mlx = NULL;
+	}
+}
+
+void	exit_with_cleanup(t_data *dt, int status)
+{
+	cleanup_data(dt);
+	exit(status);
 }

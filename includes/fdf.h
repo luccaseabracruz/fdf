@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/08/25 15:17:02 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:17:32 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 	int		endian;
 }			t_data;
 
+void	exit_with_cleanup(t_data *dt, int status);
 void	init_win(t_data *data);
 bool	validate_input(int argc, char **argv);
 
