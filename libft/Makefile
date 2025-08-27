@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 11:48:51 by lseabra-          #+#    #+#              #
-#    Updated: 2025/08/16 11:53:00 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/08/27 17:59:11 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
     ft_atoi.c       ft_calloc.c     ft_strdup.c     ft_substr.c \
     ft_strjoin.c    ft_strtrim.c    ft_split.c      ft_itoa.c \
     ft_strmapi.c    ft_striteri.c   ft_putchar_fd.c ft_putstr_fd.c \
-    ft_putendl_fd.c ft_putnbr_fd.c \
+    ft_putendl_fd.c ft_putnbr_fd.c  ft_atoi_base.c \
 )
 BONUS_SRCS = $(addprefix $(SRCS_PATH)/, \
     ft_lstnew_bonus.c      ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
@@ -114,10 +114,10 @@ $(BONUS_MARK): $(OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS) $(BONUS_OBJS) $(GNL_BONUS_O
 clean:
 	@$(RM_DIR) $(BUILD_PATH)
 	@$(RM) $(BONUS_MARK)
-	@echo "$(RED)[Cleaned build files.]$(RESET)"
+	@echo "$(RED)[$(PROJECT_NAME)] Clean: Cleaned build files.$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)[Full clean: library removed.]$(RESET)"
+	@echo "$(RED)[$(PROJECT_NAME)] Full clean: library removed.$(RESET)"
 
 re: fclean all

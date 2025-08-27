@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/08/25 15:20:41 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:34:03 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	ft_bzero(&dt, sizeof(t_data));
 	init_win(&dt);
+	init_map(&dt, argv);
 	my_mlx_pixel_put(&dt, 0, 0, 0x00FF0000);
 	mlx_put_image_to_window(dt.mlx, dt.mlx_win, dt.mlx_img, 0, 0);
 	mlx_loop(dt.mlx);
