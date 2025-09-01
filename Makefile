@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/08/27 21:45:04 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/08/31 16:53:57 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,13 @@ BUILD_PATH          = build
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
-		cleanup.c init_map.c init_win.c main.c validate.c \
+		cleanup.c \
+		init_map_utils.c \
+		init_map.c \
+		init_win.c \
+		main.c \
+		print_map.c \
+		validate.c \
 )
 
 # Object files
