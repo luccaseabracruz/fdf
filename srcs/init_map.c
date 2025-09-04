@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/03 13:22:13 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:17:20 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,31 +87,6 @@ static void	parse_map(t_data *dt, int map_fd)
 	}
 }
 
-// static void	apply_iso(t_data *dt)
-// {
-// 	int		map_width;
-// 	int		map_height;
-// 	int		i;
-// 	t_point	*point;
-
-// 	map_width = dt->limits.x_max - dt->limits.x_min;
-// 	map_height = dt->limits.y_max - dt->limits.y_min;
-// 	dt->x_offset = (WIN_WIDTH * FILL - (map_width)) / 2 - dt->limits.x_min;
-// 	dt->y_offset = (WIN_HEIGHT * FILL - (map_height)) / 2 - dt->limits.y_min;
-// 	dt->map->scale = (float)fmin(WIN_WIDTH / (double)dt->map->cols,
-// 	WIN_HEIGHT / (double)dt->map->rows) * FILL / 2.0f;
-// 	i = 0;
-// 	while (i < dt->map->point_count)
-// 	{
-// 		point = &dt->map->points[i];
-// 		point->x_iso = (point->x - point->y) * cos(ISO_SLOPE) * dt->map->scale;
-// 		point->x_iso += dt->x_offset;
-// 		point->y_iso = (point->x + point->y) * sin(ISO_SLOPE) * dt->map->scale;
-// 		point->y_iso += dt->y_offset;
-// 		i++;
-// 	}
-// }
-
 void	init_map(t_data *dt, char **argv)
 {
 	int		fd;
@@ -134,6 +109,4 @@ void	init_map(t_data *dt, char **argv)
 	}
 	parse_map(dt, fd);
 	close(fd);
-	set_limits(dt);
-	apply_iso(dt);
 }

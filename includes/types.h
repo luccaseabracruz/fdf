@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/03 17:00:12 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:30:59 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_view
 {
 	t_axis		center;
 	t_axis		rot_ang;
-	float		grid_step;
+	double		grid_step;
 	double		rotation[3][3];
 }			t_view;
 

@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/03 15:43:10 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/04 19:16:40 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,13 @@ BUILD_PATH          = build
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
 		cleanup.c \
-		init_map_utils.c \
 		init_map.c \
+		init_view.c \
 		init_win.c \
 		main.c \
+		math.c \
 		render_map.c \
+		set_rotation.c \
 		validate.c \
 )
 
@@ -86,7 +88,7 @@ $(NAME):  $(OBJS) $(LIBFT_NAME) $(MLX_NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
 
 $(BUILD_PATH)/%.o: $(SRCS_PATH)/%.c | $(BUILD_PATH)
-	@$(CC) $(CFLAGS) -c $< $(LDFLAGS) -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_PATH):
 	@$(MKDIR_P) $(BUILD_PATH)
