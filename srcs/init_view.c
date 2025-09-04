@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/03 16:01:02 by lseabra-         ###   ########.fr       */
+/*   Created: 2025/09/03 16:08:21 by lseabra-          #+#    #+#             */
+/*   Updated: 2025/09/03 16:22:44 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
-#include "mlx.h"
-#include <stdlib.h>
-#include <unistd.h>
 
-int	main(int argc, char **argv)
+void	init_view(t_data *dt)
 {
-	t_data	dt;
+	t_view *view;
 
-	if (!validate_input(argc, argv))
-		return (EXIT_FAILURE);
-	ft_bzero(&dt, sizeof(t_data));
-	init_win(&dt);
-	init_map(&dt, argv);
-	render_map(&dt);
-	mlx_put_image_to_window(dt.mlx, dt.mlx_win, dt.mlx_img, 0, 0);
-	mlx_loop(dt.mlx);
+	view = &dt->view;
+	ft_bzero(view);
+	view->center.x = dt->map->rows / 2;
+	view->center.y = dt->map->cols / 2;
+	view->rot_ang.x = 
+	view->rot_ang.y = 
 }

@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/08/31 16:53:57 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/03 15:43:10 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		init_map.c \
 		init_win.c \
 		main.c \
-		print_map.c \
+		render_map.c \
 		validate.c \
 )
 
