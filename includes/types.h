@@ -6,12 +6,14 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/06 09:48:25 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/10 15:59:11 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+
+# include <stdbool.h>
 
 typedef struct s_point
 {
@@ -67,5 +69,15 @@ typedef struct s_data
 	t_map		*map;
 	t_view		view;
 }	t_data;
+
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	m;
+	int	xstep;
+	int	ystep;
+	int	steps;
+}	t_bresenham;
 
 #endif

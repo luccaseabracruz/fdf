@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/07 17:03:14 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/10 23:42:44 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,6 @@ static void	centralize(t_data *dt)
 	}
 }
 
-static void	pixel_put(t_data *dt, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= 0 && x <= WIN_WIDTH && y >= 0 && y <= WIN_HEIGHT)
-	{
-		dst = dt->addr + (y * dt->line_length + x * (dt->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-	else
-		ft_printf("OUT OF BOUNDRIES:\n   X: %d\n   Y: %d\n\n", x, y);
-}
-
 //testing
 static void	print_limits(t_limits lim)
 {
@@ -105,23 +92,40 @@ static void	print_limits(t_limits lim)
 	ft_printf("z_max: %d\nz_min: %d\n", lim.z_max, lim.z_min);
 }
 
+void	draw_lines(t_data *dt)
+{
+	t_point	*arr;
+	t_point	p1;
+	int	i;
+	int	j;
+
+	arr = dt->map->p_arr;
+	i = 0;
+	while (i < dt->map->rows)
+	{
+		j = 0;
+		while (j < dt->map->cols)
+		{
+			p1 = arr[(i * dt->map->cols) + j];
+			if (j < dt->map->cols - 1)
+				bresenham_line(dt, p1, arr[(i * dt->map->cols) + j + 1]);
+			if (i < dt->map->rows - 1)
+				bresenham_line(dt, p1, arr[((i + 1) * dt->map->cols) + j]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	render_map(t_data *dt)
 {
 	int		i;
-	t_point	point;
+	int		j;
 
 	project_points(dt);
 	set_limits(dt);
 	centralize(dt);
 	set_limits(dt);
-	print_limits(dt->view.limits);
-	i = 0;
-	while (i < dt->map->size)
-	{
-		point = dt->map->p_arr[i];
-		ft_printf("point %d:\nx -> %d\ny -> %d\nz -> %d\n\n", i, point.x, point.y, point.z);
-		pixel_put(dt, point.x, point.y, point.color);
-		i++;
-	}
+	draw_lines(dt);
 	mlx_put_image_to_window(dt->mlx, dt->mlx_win, dt->mlx_img, 0, 0);
 }

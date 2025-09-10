@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:22:05 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/04 19:21:22 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/10 22:02:08 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,11 @@ t_point	mat_point_mul(double matrix[3][3], t_point point)
 	point.y = res[1];
 	point.z = res[2];
 	return (point);
+}
+
+int	absolute(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
 }
