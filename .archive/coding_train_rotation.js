@@ -50,8 +50,8 @@ function draw() {
   for (let i = 0; i < points.length; i++) {
     let rotated =  points[i];
     rotated = matmul(rotationY, rotated);
-    // rotated = matmul(rotationX, rotated);
-    // rotated = matmul(rotationZ, rotated);
+    rotated = matmul(rotationX, rotated);
+    rotated = matmul(rotationZ, rotated);
     let distance = 2;
     let z = 1 / (distance - rotated.z);
     const projection = [

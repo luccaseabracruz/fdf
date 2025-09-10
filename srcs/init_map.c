@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/04 19:17:20 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/06 10:39:03 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,20 @@ static void	set_dimensions(t_data *dt, char *filename)
 	map->size = map->cols * dt->map->rows;
 }
 
-static t_point	new_point(int x, int y, char *point_dt)
+static void	init_point(t_point *point, int x, int y, char *point_dt)
 {
-	t_point	point;
 	char	**arg;
 
 	arg = ft_split(point_dt, ',');
-	ft_bzero(&point, sizeof(t_point));
-	point.x = x;
-	point.y = y;
-	point.z = ft_atoi(arg[0]);
+	ft_bzero(point, sizeof(t_point));
+	point->x = x;
+	point->y = y;
+	point->z = ft_atoi(arg[0]);
 	if (arg[1] && arg[1][0] == '0' && (arg[1][1] == 'x' || arg[1][1] == 'X'))
-		point.color = ft_atoi_base(arg[1] + 2, HEX_BASE);
+		point->color = ft_atoi_base(arg[1] + 2, HEX_BASE);
 	else
-		point.color = 0xFFFFFFFF;
+		point->color = 0xFFFFFFFF;
 	free(arg);
-	return (point);
 }
 
 static void	parse_map(t_data *dt, int map_fd)
@@ -77,7 +75,7 @@ static void	parse_map(t_data *dt, int map_fd)
 		x = 0;
 		while (x < map->cols)
 		{
-			map->p_arr[map->cols * y + x] = new_point(x, y, row[x]);
+			init_point(&map->p_arr[map->cols * y + x], x, y, row[x]);
 			x++;
 		}
 		free_nullstrarr(row);
@@ -86,6 +84,20 @@ static void	parse_map(t_data *dt, int map_fd)
 		y++;
 	}
 }
+// delete after tests
+// static void	print_map(t_map *map)
+// {
+// 	int		i;
+// 	t_point	point;
+
+// 	i = 0;
+// 	while (i < map->size)
+// 	{
+// 		point = map->p_arr[i];
+// 		ft_printf("point %d\nx: %d\ny: %d\nz: %d\n\n", i, point.x, point.y, point.z);
+// 		i++;
+// 	}
+// }
 
 void	init_map(t_data *dt, char **argv)
 {
@@ -108,5 +120,6 @@ void	init_map(t_data *dt, char **argv)
 		exit_with_cleanup(dt, EXIT_FAILURE);
 	}
 	parse_map(dt, fd);
+	// print_map(dt->map);
 	close(fd);
 }

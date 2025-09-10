@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/04 19:19:35 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/07 17:08:19 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
-// #  define WIN_WIDTH 1366
-#  define WIN_WIDTH 1920
+#  define WIN_WIDTH 1366
+// #  define WIN_WIDTH 1920
 # endif
 # ifndef WIN_HEIGHT
-// #  define WIN_HEIGHT 768
-#  define WIN_HEIGHT 1080
+#  define WIN_HEIGHT 650
+// #  define WIN_HEIGHT 1080
 # endif
-# define ISO_INIT_ANG_X 30
-# define ISO_INIT_ANG_Y 30
-# define MAP_FILL 0.7f
+# define ISO_INIT_ANG_X 22.5
+# define ISO_INIT_ANG_Y -30
+# define ISO_INIT_ANG_Z 36
+# define Z_SCALER 0.2
+# define MAP_FILL 0.5f
 # define PI 3.14159265358979323846
-# define ISO_SLOPE 30 * PI / 180
 # define HEX_BASE "0123456789ABCDEF"
-
 
 // FUNCTION DECLARATIONS
 void	free_strarr(char **arr, int position);
@@ -49,9 +49,9 @@ double	degrees_to_radians(double degrees);
 t_point	mat_point_mul(double matrix[3][3], t_point point);
 void	render_map(t_data *dt);
 void	reset_rotation(t_view *view);
-void	set_rotation_x(t_view *view, double angle);
-void	set_rotation_y(t_view *view, double angle);
-void	set_rotation_z(t_view *view, double angle);
+void	set_rotation_x(t_view *view);
+void	set_rotation_y(t_view *view);
+void	set_rotation_z(t_view *view);
 bool	validate_input(int argc, char **argv);
 
 #endif

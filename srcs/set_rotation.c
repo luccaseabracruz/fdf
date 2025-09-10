@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:41:02 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/04 19:20:02 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/07 13:10:18 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ void	reset_rotation(t_view *view)
 	view->rotation[2][2] = 1;
 }
 
-void	set_rotation_x(t_view *view, double angle)
+void	set_rotation_x(t_view *view)
 {
 	double	sine;
 	double	cosine;
 
-	sine = sin(angle);
-	cosine = cos(angle);
+	sine = sin(view->rot_ang.x);
+	cosine = cos(view->rot_ang.x);
+	// sine = sin(degrees_to_radians(90) - view->rot_ang.x);
+	// cosine = cos(degrees_to_radians(90) - view->rot_ang.x);
 	view->rotation[0][0] = 1;
 	view->rotation[0][1] = 0;
 	view->rotation[0][2] = 0;
@@ -44,13 +46,13 @@ void	set_rotation_x(t_view *view, double angle)
 	view->rotation[2][2] = cosine;
 }
 
-void	set_rotation_y(t_view *view, double angle)
+void	set_rotation_y(t_view *view)
 {
 	double	sine;
 	double	cosine;
 
-	sine = sin(angle);
-	cosine = cos(angle);
+	sine = sin(view->rot_ang.y);
+	cosine = cos(view->rot_ang.y);
 	view->rotation[0][0] = cosine;
 	view->rotation[0][1] = 0;
 	view->rotation[0][2] = sine;
@@ -62,13 +64,13 @@ void	set_rotation_y(t_view *view, double angle)
 	view->rotation[2][2] = cosine;
 }
 
-void	set_rotation_z(t_view *view, double angle)
+void	set_rotation_z(t_view *view)
 {
 	double	sine;
 	double	cosine;
 
-	sine = sin(angle);
-	cosine = cos(angle);
+	sine = sin(view->rot_ang.z);
+	cosine = cos(view->rot_ang.z);
 	view->rotation[0][0] = cosine;
 	view->rotation[0][1] = -sine;
 	view->rotation[0][2] = 0;
