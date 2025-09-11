@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:43:17 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/10 22:26:01 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:01:59 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	init_bresenham(t_bresenham *b_dt, t_point p1, t_point p2)
 	ft_bzero(b_dt, sizeof(b_dt));
 	b_dt->dx = absolute(p2.x - p1.x);
 	b_dt->dy = absolute(p2.y - p1.y);
-	b_dt->m = b_dt->dy / b_dt->dx;
 	if (p1.x > p2.x)
 		b_dt->xstep = -1;
 	else
@@ -42,50 +41,65 @@ static void	init_bresenham(t_bresenham *b_dt, t_point p1, t_point p2)
 		b_dt->ystep = 1;
 }
 
+static void	shallow_line(t_data *dt, t_bresenham b_dt, t_point p1)
+{
+	int	x;
+	int	y;
+	int	p;
+	int	i;
+
+	x = p1.x;
+	y = p1.y;
+	p = 2 * b_dt.dx - b_dt.dy;
+	i = 0;
+	while (i < b_dt.dy)
+	{
+		pixel_put(dt, x, y, p1.color);
+		y += b_dt.ystep;
+		if (p < 0)
+			p += 2 * b_dt.dx;
+		else
+		{
+			p += 2 * (b_dt.dx - b_dt.dy);
+			x += b_dt.xstep;
+		}
+		i++;
+	}
+}
+
+static void	steep_line(t_data *dt, t_bresenham b_dt, t_point p1)
+{
+	int	x;
+	int	y;
+	int	p;
+	int	i;
+
+	x = p1.x;
+	y = p1.y;
+	p = 2 * b_dt.dy - b_dt.dx;
+	i = 0;
+	while (i < b_dt.dx)
+	{
+		pixel_put(dt, x, y, p1.color);
+		x += b_dt.xstep;
+		if (p < 0)
+			p += 2 * b_dt.dy;
+		else
+		{
+			p += 2 * (b_dt.dy - b_dt.dx);
+			y += b_dt.ystep;
+		}
+		i++;
+	}
+}
+
 void	bresenham_line(t_data *dt, t_point p1, t_point p2)
 {
 	t_bresenham	b_dt;
-	int			p;
-	int			x;
-	int			y;
-	int			i;
 
 	init_bresenham(&b_dt, p1, p2);
-	x = p1.x;
-	y = p1.y;
-	i = 0;
 	if (b_dt.dx >= b_dt.dy)
-	{
-		p = 2 * b_dt.dy - b_dt.dx;
-		while (i < b_dt.dx)
-		{
-			pixel_put(dt, x, y, p1.color);
-			x += b_dt.xstep;
-			if (p < 0)
-				p += 2 * b_dt.dy;
-			else
-			{
-				p += 2 * (b_dt.dy - b_dt.dx);
-				y += b_dt.ystep;
-			}
-			i++;
-		}
-	}
+		steep_line(dt, b_dt, p1);
 	else
-	{
-		p = 2 * b_dt.dx - b_dt.dy;
-		while (i < b_dt.dy)
-		{
-			pixel_put(dt, x, y, p1.color);
-			y += b_dt.ystep;
-			if (p < 0)
-				p += 2 * b_dt.dx;
-			else
-			{
-				p += 2 * (b_dt.dx - b_dt.dy);
-				x += b_dt.xstep;
-			}
-			i++;
-		}
-	}
+		shallow_line(dt, b_dt, p1);
 }

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/10 15:59:11 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:01:17 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ typedef struct s_bresenham
 {
 	int	dx;
 	int	dy;
-	int	m;
 	int	xstep;
 	int	ystep;
-	int	steps;
 }	t_bresenham;
 
 #endif

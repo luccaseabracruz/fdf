@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/10 23:14:47 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:01:44 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 1366
-// #  define WIN_WIDTH 1920
+// #  define WIN_WIDTH 1366
+#  define WIN_WIDTH 1920
 # endif
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 650
-// #  define WIN_HEIGHT 1080
+// #  define WIN_HEIGHT 650
+#  define WIN_HEIGHT 1080
 # endif
 # define ISO_INIT_ANG_X 22.5
 # define ISO_INIT_ANG_Y -30
@@ -43,6 +43,7 @@ void	free_strarr(char **arr, int position);
 void	free_nullstrarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
 void	perror_exit_cleanup(t_data *dt, char *msg, int status);
+void	hooks(t_data *dt);
 void	init_map(t_data *dt, char **argv);
 void	init_view(t_data *dt);
 void	init_win(t_data *data);

@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/10 16:39:33 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/11 18:02:44 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ BUILD_PATH          = build
 SRCS = $(addprefix $(SRCS_PATH)/, \
 		bresenham_line.c \
 		cleanup.c \
+		hooks.c \
 		init_map.c \
 		init_view.c \
 		init_win.c \

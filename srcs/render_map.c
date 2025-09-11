@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/10 23:42:44 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:49:44 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,16 @@ static void	centralize(t_data *dt)
 }
 
 //testing
-static void	print_limits(t_limits lim)
-{
-	ft_printf("WIN_WIDTH: %d\n", WIN_WIDTH);
-	ft_printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
-	ft_printf("x_max: %d\nx_min: %d\n", lim.x_max, lim.x_min);
-	ft_printf("y_max: %d\ny_min: %d\n", lim.y_max, lim.y_min);
-	ft_printf("z_max: %d\nz_min: %d\n", lim.z_max, lim.z_min);
-}
+// static void	print_limits(t_limits lim)
+// {
+// 	ft_printf("WIN_WIDTH: %d\n", WIN_WIDTH);
+// 	ft_printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
+// 	ft_printf("x_max: %d\nx_min: %d\n", lim.x_max, lim.x_min);
+// 	ft_printf("y_max: %d\ny_min: %d\n", lim.y_max, lim.y_min);
+// 	ft_printf("z_max: %d\nz_min: %d\n", lim.z_max, lim.z_min);
+// }
 
-void	draw_lines(t_data *dt)
+static void	draw_lines(t_data *dt)
 {
 	t_point	*arr;
 	t_point	p1;
@@ -119,13 +119,9 @@ void	draw_lines(t_data *dt)
 
 void	render_map(t_data *dt)
 {
-	int		i;
-	int		j;
-
 	project_points(dt);
 	set_limits(dt);
 	centralize(dt);
-	set_limits(dt);
 	draw_lines(dt);
 	mlx_put_image_to_window(dt->mlx, dt->mlx_win, dt->mlx_img, 0, 0);
 }
