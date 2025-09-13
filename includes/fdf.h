@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/11 18:01:44 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/13 13:02:42 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
-// #  define WIN_WIDTH 1366
-#  define WIN_WIDTH 1920
+#  define WIN_WIDTH 1366
+// #  define WIN_WIDTH 1920
 # endif
 # ifndef WIN_HEIGHT
-// #  define WIN_HEIGHT 650
-#  define WIN_HEIGHT 1080
+#  define WIN_HEIGHT 650
+// #  define WIN_HEIGHT 1080
 # endif
 # define ISO_INIT_ANG_X 22.5
 # define ISO_INIT_ANG_Y -30

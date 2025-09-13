@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:41:02 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/07 13:10:18 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:36:55 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	set_rotation_x(t_view *view)
 
 	sine = sin(view->rot_ang.x);
 	cosine = cos(view->rot_ang.x);
-	// sine = sin(degrees_to_radians(90) - view->rot_ang.x);
-	// cosine = cos(degrees_to_radians(90) - view->rot_ang.x);
 	view->rotation[0][0] = 1;
 	view->rotation[0][1] = 0;
 	view->rotation[0][2] = 0;

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/06 10:39:03 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:42:59 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,6 @@ static void	parse_map(t_data *dt, int map_fd)
 		y++;
 	}
 }
-// delete after tests
-// static void	print_map(t_map *map)
-// {
-// 	int		i;
-// 	t_point	point;
-
-// 	i = 0;
-// 	while (i < map->size)
-// 	{
-// 		point = map->p_arr[i];
-// 		ft_printf("point %d\nx: %d\ny: %d\nz: %d\n\n", i, point.x, point.y, point.z);
-// 		i++;
-// 	}
-// }
 
 void	init_map(t_data *dt, char **argv)
 {
@@ -120,6 +106,5 @@ void	init_map(t_data *dt, char **argv)
 		exit_with_cleanup(dt, EXIT_FAILURE);
 	}
 	parse_map(dt, fd);
-	// print_map(dt->map);
 	close(fd);
 }

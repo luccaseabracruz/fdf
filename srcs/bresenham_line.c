@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:43:17 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/11 16:01:59 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:46:24 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_bresenham(t_bresenham *b_dt, t_point p1, t_point p2)
 		b_dt->xstep = 1;
 	if (p1.y > p2.y)
 		b_dt->ystep = -1;
-	else	
+	else
 		b_dt->ystep = 1;
 }
 
