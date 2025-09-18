@@ -6,84 +6,54 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/08/31 17:58:51 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 17:51:33 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include "types.h"
 # include <stdbool.h>
 
+// MACROS
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
 # define INVALID_EXTENSION_MSG "Error: invalid map extension.\n"
-
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 1366
 // #  define WIN_WIDTH 1920
 # endif
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 768
+#  define WIN_HEIGHT 650
 // #  define WIN_HEIGHT 1080
 # endif
-# define FILL 0.7f
+# define ISO_INIT_ANG_X 45
+# define ISO_INIT_ANG_Y 45
+# define ISO_INIT_ANG_Z -30
+# define ROT_DEGREES 1.0
+# define Z_SCALER 0.4
+# define MAP_FILL 0.5f
 # define PI 3.14159265358979323846
-# define ISO_SLOPE 30 * PI / 180
 # define HEX_BASE "0123456789ABCDEF"
 
-typedef struct s_point
-{
-	int	x;
-	int	y;
-	int	z;
-	int	x_iso;
-	int	y_iso;
-	int	color;
-}			t_point;
-
-typedef struct s_map
-{
-	int		columns;
-	int		rows;
-	t_point	*points;
-	int		point_count;
-	float	scale;
-}			t_map;
-
-typedef struct s_limits
-{
-	int	x_min;
-	int	x_max;
-	int	y_min;
-	int	y_max;
-	int	z_min;
-	int	z_max;
-}			t_limits;
-
-typedef struct s_data
-{
-	void		*mlx;
-	void		*mlx_win;
-	void		*mlx_img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	t_map		*map;
-	t_limits	limits;
-	int			x_offset;
-	int			y_offset;
-}			t_data;
-
-void	free_strarr(char **arr, int position);
+// FUNCTION DECLARATIONS
+void	bresenham_line(t_data *dt, t_point p1, t_point p2);
 void	free_nullstrarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
 void	perror_exit_cleanup(t_data *dt, char *msg, int status);
-void	set_limits(t_data *dt);
+void	hooks(t_data *dt);
 void	init_map(t_data *dt, char **argv);
+void	init_view(t_data *dt);
 void	init_win(t_data *data);
-void	print_map(t_data *dt);
+double	degrees_to_radians(double degrees);
+t_point	mat_point_mul(double matrix[3][3], t_point point);
+int		absolute(int num);
+void	render_map(t_data *dt);
+void	reset_rotation(t_view *view);
+void	set_rotation_x(t_view *view);
+void	set_rotation_y(t_view *view);
+void	set_rotation_z(t_view *view);
 bool	validate_input(int argc, char **argv);
 
 #endif

@@ -35,12 +35,16 @@ BUILD_PATH          = build
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
+		bresenham_line.c \
 		cleanup.c \
-		init_map_utils.c \
+		hooks.c \
 		init_map.c \
+		init_view.c \
 		init_win.c \
 		main.c \
-		print_map.c \
+		math.c \
+		render_map.c \
+		set_rotation.c \
 		validate.c \
 )
 
