@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 17:51:33 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 14:47:19 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # define INVALID_EXTENSION_MSG "Error: invalid map extension.\n"
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
-#  define WIN_WIDTH 1366
-// #  define WIN_WIDTH 1920
+// #  define WIN_WIDTH 1366
+#  define WIN_WIDTH 1920
 # endif
 # ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 650
-// #  define WIN_HEIGHT 1080
+// #  define WIN_HEIGHT 650
+#  define WIN_HEIGHT 1080
 # endif
 # define ISO_INIT_ANG_X 45
 # define ISO_INIT_ANG_Y 45
@@ -41,7 +41,6 @@
 void	bresenham_line(t_data *dt, t_point p1, t_point p2);
 void	free_nullstrarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
-void	perror_exit_cleanup(t_data *dt, char *msg, int status);
 void	hooks(t_data *dt);
 void	init_map(t_data *dt, char **argv);
 void	init_view(t_data *dt);

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:08:21 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 18:46:18 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:27:53 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	init_limits(t_limits *lim)
 	lim->x_max = INT_MIN;
 	lim->y_min = INT_MAX;
 	lim->y_max = INT_MIN;
-	lim->z_min = INT_MAX;
-	lim->z_max = INT_MIN;
 }
 
 void	init_view(t_data *dt)

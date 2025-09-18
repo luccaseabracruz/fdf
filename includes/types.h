@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 18:45:22 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:09:16 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_limits
 	int	x_max;
 	int	y_min;
 	int	y_max;
-	int	z_min;
-	int	z_max;
 }	t_limits;
 
 typedef struct s_axis

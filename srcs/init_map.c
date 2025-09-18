@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 18:52:58 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:03:42 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	set_dimensions(t_data *dt, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
 	{
-		perror_exit_cleanup(dt, filename, EXIT_FAILURE);
-
+		perror(filename);
+		exit_with_cleanup(dt, EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
 	row = ft_split(line, ' ');
@@ -88,14 +88,8 @@ static void	parse_map(t_data *dt, int map_fd)
 	}
 }
 
-static void	alloc_map(t_data *dt, int fd)
+static void	alloc_points(t_data *dt, int fd)
 {
-	dt->map = ft_calloc(1, sizeof(t_map));
-	if (!dt->map)
-	{
-		close(fd);
-		exit_with_cleanup(dt, EXIT_FAILURE);
-	}
 	dt->map->p_arr = ft_calloc(dt->map->size, sizeof(t_point));
 	if (!dt->map->p_arr)
 	{
@@ -116,9 +110,18 @@ void	init_map(t_data *dt, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		perror_exit_cleanup(dt, argv[1], EXIT_FAILURE);
+	{
+		perror(argv[1]);
+		exit_with_cleanup(dt, EXIT_FAILURE);
+	}
+	dt->map = ft_calloc(1, sizeof(t_map));
+	if (!dt->map)
+	{
+		close(fd);
+		exit_with_cleanup(dt, EXIT_FAILURE);
+	}
 	set_dimensions(dt, argv[1]);
-	alloc_map(dt, fd);
+	alloc_points(dt, fd);
 	parse_map(dt, fd);
 	close(fd);
 }

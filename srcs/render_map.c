@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 18:56:11 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:31:41 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,14 @@ static void	set_limits(t_data *dt)
 	i = 0;
 	while (i < dt->map->size)
 	{
-		if (dt->view.limits.x_min > dt->map->p_arr[i].x)
-			dt->view.limits.x_min = dt->map->p_arr[i].x;
-		if (dt->view.limits.x_max < dt->map->p_arr[i].x)
-			dt->view.limits.x_max = dt->map->p_arr[i].x;
-		if (dt->view.limits.y_min > dt->map->p_arr[i].y)
-			dt->view.limits.y_min = dt->map->p_arr[i].y;
-		if (dt->view.limits.y_max < dt->map->p_arr[i].y)
-			dt->view.limits.y_max = dt->map->p_arr[i].y;
-		if (dt->view.limits.z_min > dt->map->p_arr[i].z)
-			dt->view.limits.z_min = dt->map->p_arr[i].z;
-		if (dt->view.limits.z_max < dt->map->p_arr[i].z)
-			dt->view.limits.z_max = dt->map->p_arr[i].z;
+		if (dt->view.limits.x_min > dt->map->proj_arr[i].x)
+			dt->view.limits.x_min = dt->map->proj_arr[i].x;
+		if (dt->view.limits.x_max < dt->map->proj_arr[i].x)
+			dt->view.limits.x_max = dt->map->proj_arr[i].x;
+		if (dt->view.limits.y_min > dt->map->proj_arr[i].y)
+			dt->view.limits.y_min = dt->map->proj_arr[i].y;
+		if (dt->view.limits.y_max < dt->map->proj_arr[i].y)
+			dt->view.limits.y_max = dt->map->proj_arr[i].y;
 		i++;
 	}
 }
@@ -52,12 +48,13 @@ static void	project_points(t_data *dt)
 		proj->x = point->x * dt->view.grid_step;
 		proj->y = point->y * dt->view.grid_step;
 		proj->z = point->z * dt->view.grid_step * Z_SCALER;
+		proj->color = point->color;
 		set_rotation_x(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
 		set_rotation_y(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
 		set_rotation_z(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
 		i++;
 	}
 }
@@ -65,17 +62,13 @@ static void	project_points(t_data *dt)
 static void	centralize(t_data *dt)
 {
 	int			i;
-	int			map_w;
-	int			map_h;
-	t_limits	lim;
+	t_point		center;
 	t_point		offset;
 
-	lim = dt->view.limits;
-	lim = dt->view.offset;
-	map_w = lim.x_max - lim.x_min;
-	map_h = lim.y_max - lim.y_min;
-	offset.x = (WIN_WIDTH - map_w) / 2 - lim.x_min;
-	offset.y = (WIN_HEIGHT - map_h) / 2 - lim.y_min;
+	center.x = dt->view.limits.x_max - ((dt->view.limits.x_max - dt->view.limits.x_min) / 2);
+	center.y = dt->view.limits.y_max - ((dt->view.limits.y_max - dt->view.limits.y_min) / 2);
+	offset.x = (WIN_WIDTH / 2) - center.x;
+	offset.y = (WIN_HEIGHT / 2) - center.y;
 	i = 0;
 	while (i < dt->map->size)
 	{
@@ -110,10 +103,8 @@ static void	draw_lines(t_data *dt)
 	}
 }
 
-void	render_map(t_data *dt, bool is_first)
+void	render_map(t_data *dt)
 {
-	t_point	*proj_arr;
-
 	project_points(dt);
 	set_limits(dt);
 	centralize(dt);

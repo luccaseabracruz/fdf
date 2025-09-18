@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 18:37:10 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 14:30:53 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,4 @@ void	exit_with_cleanup(t_data *dt, int status)
 	free_and_null(dt->map->p_arr);
 	free_and_null(dt->map->proj_arr);
 	exit(status);
-}
-
-void	perror_exit_cleanup(t_data *dt, char *msg, int status)
-{
-	exit_window(dt);
-	free_and_null(dt->map->p_arr);
-	free_and_null(dt->map->proj_arr);
 }
