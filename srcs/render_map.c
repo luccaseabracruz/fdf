@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:46:52 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:56:11 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,22 @@ static void	project_points(t_data *dt)
 {
 	int		i;
 	t_point	*point;
+	t_point	*proj;
 
 	i = 0;
 	while (i < dt->map->size)
 	{
 		point = &dt->map->p_arr[i];
-		point->x *= dt->view.grid_step;
-		point->y *= dt->view.grid_step;
-		point->z *= dt->view.grid_step * Z_SCALER;
+		proj = &dt->map->proj_arr[i];
+		proj->x = point->x * dt->view.grid_step;
+		proj->y = point->y * dt->view.grid_step;
+		proj->z = point->z * dt->view.grid_step * Z_SCALER;
 		set_rotation_x(&dt->view);
-		*point = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *point);
 		set_rotation_y(&dt->view);
-		*point = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *point);
 		set_rotation_z(&dt->view);
-		*point = mat_point_mul(dt->view.rotation, *point);
+		*proj = mat_point_mul(dt->view.rotation, *point);
 		i++;
 	}
 }
@@ -69,6 +71,7 @@ static void	centralize(t_data *dt)
 	t_point		offset;
 
 	lim = dt->view.limits;
+	lim = dt->view.offset;
 	map_w = lim.x_max - lim.x_min;
 	map_h = lim.y_max - lim.y_min;
 	offset.x = (WIN_WIDTH - map_w) / 2 - lim.x_min;
@@ -76,39 +79,41 @@ static void	centralize(t_data *dt)
 	i = 0;
 	while (i < dt->map->size)
 	{
-		dt->map->p_arr[i].x += offset.x;
-		dt->map->p_arr[i].y += offset.y;
+		dt->map->proj_arr[i].x += offset.x;
+		dt->map->proj_arr[i].y += offset.y;
 		i++;
 	}
 }
 
 static void	draw_lines(t_data *dt)
 {
-	t_point	*arr;
+	t_point	*proj_arr;
 	t_point	p1;
 	int		i;
 	int		j;
 
-	arr = dt->map->p_arr;
+	proj_arr = dt->map->proj_arr;
 	i = 0;
 	while (i < dt->map->rows)
 	{
 		j = 0;
 		while (j < dt->map->cols)
 		{
-			p1 = arr[(i * dt->map->cols) + j];
+			p1 = proj_arr[(i * dt->map->cols) + j];
 			if (j < dt->map->cols - 1)
-				bresenham_line(dt, p1, arr[(i * dt->map->cols) + j + 1]);
+				bresenham_line(dt, p1, proj_arr[(i * dt->map->cols) + j + 1]);
 			if (i < dt->map->rows - 1)
-				bresenham_line(dt, p1, arr[((i + 1) * dt->map->cols) + j]);
+				bresenham_line(dt, p1, proj_arr[((i + 1) * dt->map->cols) + j]);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	render_map(t_data *dt)
+void	render_map(t_data *dt, bool is_first)
 {
+	t_point	*proj_arr;
+
 	project_points(dt);
 	set_limits(dt);
 	centralize(dt);

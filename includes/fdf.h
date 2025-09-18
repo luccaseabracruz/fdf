@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/13 13:02:42 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 17:51:33 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 // MACROS
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
 # define INVALID_EXTENSION_MSG "Error: invalid map extension.\n"
-
 # define WIN_HEADER "FDF"
 # ifndef WIN_WIDTH
 #  define WIN_WIDTH 1366
@@ -29,9 +28,10 @@
 #  define WIN_HEIGHT 650
 // #  define WIN_HEIGHT 1080
 # endif
-# define ISO_INIT_ANG_X 22.5
-# define ISO_INIT_ANG_Y -30
-# define ISO_INIT_ANG_Z 36
+# define ISO_INIT_ANG_X 45
+# define ISO_INIT_ANG_Y 45
+# define ISO_INIT_ANG_Z -30
+# define ROT_DEGREES 1.0
 # define Z_SCALER 0.4
 # define MAP_FILL 0.5f
 # define PI 3.14159265358979323846
@@ -39,7 +39,6 @@
 
 // FUNCTION DECLARATIONS
 void	bresenham_line(t_data *dt, t_point p1, t_point p2);
-void	free_strarr(char **arr, int position);
 void	free_nullstrarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
 void	perror_exit_cleanup(t_data *dt, char *msg, int status);

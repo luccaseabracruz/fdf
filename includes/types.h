@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/11 16:01:17 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:45:22 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_map
 	int		cols;
 	int		rows;
 	t_point	*p_arr;
+	t_point	*proj_arr;
 	int		size;
 }	t_map;
 
@@ -55,6 +56,7 @@ typedef struct s_view
 	double		rotation[3][3];
 	t_limits	limits;
 	t_point		offset;
+	double		zoom;
 }	t_view;
 
 typedef struct s_data

@@ -1,4 +1,4 @@
-[ ] Init view
-[ ] Init axis
-[ ] What is a vector? A point?0
-[ ] 
+[X] Init view
+[X] Init axis
+[X] What is a vector? A point?
+[ ] Rotation

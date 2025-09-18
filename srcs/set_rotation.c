@@ -6,11 +6,12 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:41:02 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:36:55 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 13:08:01 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include <math.h>
 
 void	reset_rotation(t_view *view)

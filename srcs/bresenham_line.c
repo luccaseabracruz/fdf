@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:43:17 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/13 16:46:24 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/14 17:41:56 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	pixel_put(t_data *dt, int x, int y, int color)
 		dst = dt->addr + (y * dt->line_length + x * (dt->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
-	else
-		ft_printf("OUT OF BOUNDRIES:\n   X: %d\n   Y: %d\n\n", x, y);
 }
 
 static void	init_bresenham(t_bresenham *b_dt, t_point p1, t_point p2)
