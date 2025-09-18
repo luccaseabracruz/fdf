@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 14:47:19 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:06:53 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,20 @@
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
 # define INVALID_EXTENSION_MSG "Error: invalid map extension.\n"
 # define WIN_HEADER "FDF"
-# ifndef WIN_WIDTH
-// #  define WIN_WIDTH 1366
-#  define WIN_WIDTH 1920
+# ifndef WIN_W
+// #  define WIN_W 1366
+#  define WIN_W 1920
 # endif
-# ifndef WIN_HEIGHT
-// #  define WIN_HEIGHT 650
-#  define WIN_HEIGHT 1080
+# ifndef WIN_H
+// #  define WIN_H 650
+#  define WIN_H 1080
 # endif
 # define ISO_INIT_ANG_X 45
 # define ISO_INIT_ANG_Y 45
 # define ISO_INIT_ANG_Z -30
-# define ROT_DEGREES 1.0
-# define Z_SCALER 0.4
+# define ROT_DEGREES 2.0
+# define ZOOM_SPEED 0.05
+# define Z_SCALER 0.5
 # define MAP_FILL 0.5f
 # define PI 3.14159265358979323846
 # define HEX_BASE "0123456789ABCDEF"

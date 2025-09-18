@@ -58,6 +58,8 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
 	"numbers": "c",
-	"stdbool.h": "c"
+	"stdbool.h": "c",
+	"stdlib.h": "c",
+	"keysym.h": "c"
 }
 }
