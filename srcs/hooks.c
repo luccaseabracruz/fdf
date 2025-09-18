@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 16:45:00 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:03:03 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int	handle_destroy(t_data *dt)
 	return (0);
 }
 
+#include <stdio.h>
 static int	handle_key_press(int keycode, t_data *dt)
 {
-	ft_printf("keycode: %d\n", keycode);
 	if (keycode == XK_Escape)
 		exit_with_cleanup(dt, EXIT_SUCCESS);
 	else if (keycode == XK_w)
@@ -53,15 +53,17 @@ static int	handle_key_press(int keycode, t_data *dt)
 		rotate_render(dt, 'z', ROT_DEGREES);
 	else if (keycode == XK_e)
 		rotate_render(dt, 'z', -ROT_DEGREES);
-	if (keycode == XK_equal && dt->view.zoom < 1.0 - ZOOM_SPEED)
+	if (keycode == XK_equal && dt->view.zoom + ZOOM_SPEED < 0.999)
 	{
 		dt->view.zoom += ZOOM_SPEED;
+		printf("zoom: %.2f\n", dt->view.zoom);
 		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 		render_map(dt);
 	}
-	if (keycode == XK_minus && dt->view.zoom + ZOOM_SPEED > 0.0)
+	if (keycode == XK_minus && dt->view.zoom - ZOOM_SPEED > 0.001)
 	{
 		dt->view.zoom -= ZOOM_SPEED;
+		printf("zoom: %.2f\n", dt->view.zoom);
 		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 		render_map(dt);
 	}
