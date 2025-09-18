@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 17:03:03 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:08:23 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int	handle_destroy(t_data *dt)
 	return (0);
 }
 
-#include <stdio.h>
 static int	handle_key_press(int keycode, t_data *dt)
 {
 	if (keycode == XK_Escape)
@@ -56,14 +55,12 @@ static int	handle_key_press(int keycode, t_data *dt)
 	if (keycode == XK_equal && dt->view.zoom + ZOOM_SPEED < 0.999)
 	{
 		dt->view.zoom += ZOOM_SPEED;
-		printf("zoom: %.2f\n", dt->view.zoom);
 		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 		render_map(dt);
 	}
 	if (keycode == XK_minus && dt->view.zoom - ZOOM_SPEED > 0.001)
 	{
 		dt->view.zoom -= ZOOM_SPEED;
-		printf("zoom: %.2f\n", dt->view.zoom);
 		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 		render_map(dt);
 	}
@@ -74,5 +71,4 @@ void	hooks(t_data *dt)
 {
 	mlx_hook(dt->mlx_win, 17, 0, handle_destroy, dt);
 	mlx_key_hook(dt->mlx_win, handle_key_press, dt);
-	// mlx_mouse_hook(dt->mlx_win, handle_mouse, dt);
 }

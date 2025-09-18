@@ -1,4 +1,4 @@
-[X] Init view
-[X] Init axis
-[X] What is a vector? A point?
-[ ] Rotation
+[ ] Rotation: why doesn't rotate in the same place?
+[ ] color gradient
+[ ] 
+
