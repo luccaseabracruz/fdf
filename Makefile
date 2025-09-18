@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/11 18:02:44 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/02 14:01:48 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ MAKE    = make --no-print-directory
 
 all: $(NAME)
 
-$(NAME):  $(OBJS) $(LIBFT_NAME) $(MLX_NAME)
+$(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_NAME) 
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
 
