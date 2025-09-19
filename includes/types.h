@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:34:35 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/19 13:22:51 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,20 @@ typedef struct s_data
 
 typedef struct s_bresenham
 {
+	t_point	p1;
+	t_point	p2;
 	int	dx;
 	int	dy;
 	int	xstep;
 	int	ystep;
 }	t_bresenham;
+
+typedef struct	s_argb
+{
+	int	alpha;
+	int	red;
+	int	green;
+	int	blue;
+}	t_argb;
 
 #endif

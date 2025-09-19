@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/02 14:01:48 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/19 13:54:50 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ BUILD_PATH          = build
 SRCS = $(addprefix $(SRCS_PATH)/, \
 		bresenham_line.c \
 		cleanup.c \
+		color_between.c \
 		hooks.c \
 		init_map.c \
 		init_view.c \
@@ -45,7 +46,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		math.c \
 		render_map.c \
 		set_rotation.c \
-		validate.c \
+		validate_input.c \
 )
 
 # Object files
