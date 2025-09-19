@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/19 13:54:50 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/19 17:28:37 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,5 +113,8 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: executable '$(NAME)' removed.$(RESET)"
+
+valgrind: $(NAME)
+	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --gen-suppressions=all --log-file=leak_sum.txt ./fdf maps/42.fdf
 
 re: fclean all

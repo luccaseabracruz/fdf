@@ -6,15 +6,16 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 17:17:54 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 10:03:02 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:19:58 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include <stdbool.h>
+#include <unistd.h>
 
-static bool	validate_format(char *map, char *format)
+static bool	validate_extension(char *map, char *format)
 {
 	while (*(++map))
 	{
@@ -37,9 +38,26 @@ bool	validate_input(int argc, char **argv)
 		ft_putstr_fd(INVALID_INPUT_MSG, STDERR_FILENO);
 		res = false;
 	}
-	else if (!validate_format(argv[1], ".fdf"))
+	else if (!validate_extension(argv[1], FDF_EXT))
 	{
-		ft_putstr_fd(INVALID_EXTENSION_MSG, STDERR_FILENO);
+		write(STDERR_FILENO, INVALID_EXT_MSG, ft_strlen(INVALID_EXT_MSG));
+		res = false;
+	}
+	return (res);
+}
+
+bool	validate_row(int map_cols, char **row)
+{
+	bool	res;
+	int		cols_size;
+
+	res = true;
+	cols_size = 0;
+	while (row[cols_size])
+		cols_size++;
+	if (cols_size != map_cols)
+	{
+		write(STDERR_FILENO, DIFF_COL_SIZE_MSG, ft_strlen(DIFF_COL_SIZE_MSG));
 		res = false;
 	}
 	return (res);

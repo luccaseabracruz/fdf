@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:03:42 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/19 17:47:00 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	init_point(t_point *point, int x, int y, char *point_dt)
 		point->color = ft_atoi_base(arg[1] + 2, HEX_BASE);
 	else
 		point->color = 0xFFFFFFFF;
-	free(arg);
+	free_nullstrarr(arg);
 }
 
 static void	parse_map(t_data *dt, int map_fd)
@@ -67,20 +67,22 @@ static void	parse_map(t_data *dt, int map_fd)
 	char	**row;
 	int		x;
 	int		y;
-	t_map	*map;
 
-	map = dt->map;
 	line = get_next_line(map_fd);
 	y = 0;
 	while (line)
 	{
 		row = ft_split(line, ' ');
-		x = 0;
-		while (x < map->cols)
+		if (!validate_row(dt->map->cols, row))
 		{
-			init_point(&map->p_arr[map->cols * y + x], x, y, row[x]);
-			x++;
+			close(map_fd);
+			free_nullstrarr(row);
+			free(line);
+			exit_with_cleanup(dt, EXIT_FAILURE);
 		}
+		x = -1;
+		while (++x < dt->map->cols)
+			init_point(&dt->map->p_arr[dt->map->cols * y + x], x, y, row[x]);
 		free_nullstrarr(row);
 		free(line);
 		line = get_next_line(map_fd);

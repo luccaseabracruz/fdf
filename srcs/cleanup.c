@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 16:03:33 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/19 17:50:00 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	free_nullstrarr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 static void	free_and_null(void *ptr)
 {
 	if (ptr)
@@ -35,6 +22,19 @@ static void	free_and_null(void *ptr)
 		free(ptr);
 		ptr = NULL;
 	}
+}
+
+void	free_nullstrarr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free_and_null(arr[i]);
+		i++;
+	}
+	free_and_null(arr);
 }
 
 static void	exit_window(t_data *dt)
@@ -61,5 +61,6 @@ void	exit_with_cleanup(t_data *dt, int status)
 	exit_window(dt);
 	free_and_null(dt->map->p_arr);
 	free_and_null(dt->map->proj_arr);
+	free_and_null(dt->map);
 	exit(status);
 }

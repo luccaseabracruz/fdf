@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 14:07:47 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/19 17:59:39 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <stdbool.h>
 
 // MACROS
+# define FDF_EXT ".fdf"
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
-# define INVALID_EXTENSION_MSG "Error: invalid map extension.\n"
+# define INVALID_EXT_MSG "Error: invalid map extension.\n"
+# define DIFF_COL_SIZE_MSG "Error: diferent row sizes detected.\n"
 # define WIN_HEADER "FDF"
 # ifndef WIN_W
 // #  define WIN_W 1366
@@ -56,5 +58,6 @@ void	set_rotation_x(t_view *view);
 void	set_rotation_y(t_view *view);
 void	set_rotation_z(t_view *view);
 bool	validate_input(int argc, char **argv);
+bool	validate_row(int row_size, char **row);
 
 #endif
