@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:31:41 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:37:55 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static void	project_points(t_data *dt)
 	{
 		point = &dt->map->p_arr[i];
 		proj = &dt->map->proj_arr[i];
-		proj->x = point->x * dt->view.grid_step;
-		proj->y = point->y * dt->view.grid_step;
-		proj->z = point->z * dt->view.grid_step * Z_SCALER;
+		proj->x = point->x * dt->view.grid_step * dt->view.zoom;
+		proj->y = point->y * dt->view.grid_step * dt->view.zoom;
+		proj->z = point->z * dt->view.grid_step * dt->view.zoom * Z_SCALER;
 		proj->color = point->color;
 		set_rotation_x(&dt->view);
 		*proj = mat_point_mul(dt->view.rotation, *proj);
@@ -62,13 +62,15 @@ static void	project_points(t_data *dt)
 static void	centralize(t_data *dt)
 {
 	int			i;
+	t_limits	lim;
 	t_point		center;
 	t_point		offset;
 
-	center.x = dt->view.limits.x_max - ((dt->view.limits.x_max - dt->view.limits.x_min) / 2);
-	center.y = dt->view.limits.y_max - ((dt->view.limits.y_max - dt->view.limits.y_min) / 2);
-	offset.x = (WIN_WIDTH / 2) - center.x;
-	offset.y = (WIN_HEIGHT / 2) - center.y;
+	lim = dt->view.limits;
+	center.x = lim.x_max - ((lim.x_max - lim.x_min) / 2);
+	center.y = lim.y_max - ((lim.y_max - lim.y_min) / 2);
+	offset.x = (WIN_W / 2) - center.x;
+	offset.y = (WIN_H / 2) - center.y;
 	i = 0;
 	while (i < dt->map->size)
 	{

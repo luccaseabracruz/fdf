@@ -18,8 +18,8 @@ static void	print_map(t_map *map)
 //testing
 static void	print_limits(t_limits lim)
 {
-	ft_printf("WIN_WIDTH: %d\n", WIN_WIDTH);
-	ft_printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
+	ft_printf("WIN_W: %d\n", WIN_W);
+	ft_printf("WIN_H: %d\n", WIN_H);
 	ft_printf("x_max: %d\nx_min: %d\n", lim.x_max, lim.x_min);
 	ft_printf("y_max: %d\ny_min: %d\n", lim.y_max, lim.y_min);
 	ft_printf("z_max: %d\nz_min: %d\n", lim.z_max, lim.z_min);

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:08:21 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 15:27:53 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:24:54 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void	init_view(t_data *dt)
 
 	view = &dt->view;
 	ft_bzero(view, sizeof(t_view));
+	view->zoom = 0.5;
 	view->grid_step = fmin(
-			WIN_WIDTH / (double)dt->map->cols,
-			WIN_HEIGHT / (double)dt->map->rows
-			) * MAP_FILL;
+			WIN_W / (double)dt->map->cols,
+			WIN_H / (double)dt->map->rows
+			) * dt->view.zoom;
 	view->rot_ang.x = degrees_to_radians(ISO_INIT_ANG_X);
 	view->rot_ang.y = degrees_to_radians(ISO_INIT_ANG_Y);
 	view->rot_ang.z = degrees_to_radians(ISO_INIT_ANG_Z);
