@@ -6,21 +6,13 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:08:21 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 14:07:21 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:00:22 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include <math.h>
-
-static void	init_limits(t_limits *lim)
-{
-	lim->x_min = INT_MAX;
-	lim->x_max = INT_MIN;
-	lim->y_min = INT_MAX;
-	lim->y_max = INT_MIN;
-}
 
 void	init_view(t_data *dt)
 {
@@ -39,5 +31,4 @@ void	init_view(t_data *dt)
 	view->rotation[0][0] = 1.0;
 	view->rotation[1][1] = 1.0;
 	view->rotation[2][2] = 1.0;
-	init_limits(&dt->view.limits);
 }

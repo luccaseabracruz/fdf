@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/18 20:26:03 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/22 16:38:19 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,10 @@
 #include <X11/keysym.h>
 #include <X11/X.h>
 
-static void	rotate_render(t_data *dt, char axis, double rot_value)
-{
-	rot_value = degrees_to_radians(rot_value);
-	if (axis == 'x')
-		dt->view.rot_ang.x += rot_value;
-	else if (axis == 'y')
-		dt->view.rot_ang.y += rot_value;
-	else if (axis == 'z')
-		dt->view.rot_ang.z += rot_value;
-	ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
-	render_map(dt);
-}
-
 static int	handle_destroy(t_data *dt)
 {
 	exit_with_cleanup(dt, EXIT_SUCCESS);
 	return (0);
-}
-
-static void	zoom_render(t_data *dt, double delta)
-{
-	dt->view.zoom += delta;
-	ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
-	render_map(dt);
 }
 
 static int	handle_key_press(int keycode, t_data *dt)
@@ -60,9 +40,17 @@ static int	handle_key_press(int keycode, t_data *dt)
 	else if (keycode == XK_e)
 		rotate_render(dt, 'z', -ROT_DEGREES);
 	else if (keycode == XK_equal)
-		zoom_render(dt, ZOOM_SPEED);
-	else if (keycode == XK_minus && dt->view.zoom - ZOOM_SPEED > 0.001)
-		zoom_render(dt, -ZOOM_SPEED);
+		zoom_render(dt, ZOOM_STEP);
+	else if (keycode == XK_minus && dt->view.zoom - ZOOM_STEP > 0.001)
+		zoom_render(dt, -ZOOM_STEP);
+	else if (keycode == XK_Up)
+		pan_render(dt, 'v', -PAN_STEP);
+	else if (keycode == XK_Down)
+		pan_render(dt, 'v', PAN_STEP);
+	else if (keycode == XK_Right)
+		pan_render(dt, 'h', PAN_STEP);
+	else if (keycode == XK_Left)
+		pan_render(dt, 'h', -PAN_STEP);
 	return (0);
 }
 

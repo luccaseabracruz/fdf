@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/19 17:28:37 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/22 16:41:32 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,15 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		init_map.c \
 		init_view.c \
 		init_win.c \
-		main.c \
 		math.c \
-		render_map.c \
-		set_rotation.c \
+		render_utils.c \
+		render.c \
+		rotate.c \
+		set_limits.c \
 		validate_input.c \
 )
+SRCS += main.c
+
 
 # Object files
 OBJS       = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS:.c=.o)))
@@ -89,6 +92,9 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_NAME) 
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
+
+$(BUILD_PATH)/%.o: %.c | $(BUILD_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_PATH)/%.o: $(SRCS_PATH)/%.c | $(BUILD_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_rotation.c                                     :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:41:02 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/14 13:08:01 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/22 16:42:17 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 #include "libft.h"
 #include <math.h>
 
-void	reset_rotation(t_view *view)
-{
-	view->rotation[0][0] = 1;
-	view->rotation[0][1] = 0;
-	view->rotation[0][2] = 0;
-	view->rotation[1][0] = 0;
-	view->rotation[1][1] = 1;
-	view->rotation[1][2] = 0;
-	view->rotation[2][0] = 0;
-	view->rotation[2][1] = 0;
-	view->rotation[2][2] = 1;
-}
-
-void	set_rotation_x(t_view *view)
+static void	set_rotation_x(t_view *view)
 {
 	double	sine;
 	double	cosine;
@@ -45,7 +32,7 @@ void	set_rotation_x(t_view *view)
 	view->rotation[2][2] = cosine;
 }
 
-void	set_rotation_y(t_view *view)
+static void	set_rotation_y(t_view *view)
 {
 	double	sine;
 	double	cosine;
@@ -63,7 +50,7 @@ void	set_rotation_y(t_view *view)
 	view->rotation[2][2] = cosine;
 }
 
-void	set_rotation_z(t_view *view)
+static void	set_rotation_z(t_view *view)
 {
 	double	sine;
 	double	cosine;
@@ -79,4 +66,28 @@ void	set_rotation_z(t_view *view)
 	view->rotation[2][0] = 0;
 	view->rotation[2][1] = 0;
 	view->rotation[2][2] = 1;
+}
+
+void	rotate(t_data *dt)
+{
+	int		i;
+	t_point	*proj;
+
+	i = 0;
+	set_limits(dt);
+	while (i < dt->map->size)
+	{
+		proj = &dt->map->proj_arr[i];
+		proj->x -= dt->view.center.x;
+		proj->y -= dt->view.center.y;
+		set_rotation_x(&dt->view);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
+		set_rotation_y(&dt->view);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
+		set_rotation_z(&dt->view);
+		*proj = mat_point_mul(dt->view.rotation, *proj);
+		proj->x += dt->view.center.x;
+		proj->y += dt->view.center.y;
+		i++;
+	}
 }

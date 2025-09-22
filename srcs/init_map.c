@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 17:47:00 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/22 14:48:54 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	set_dimensions(t_data *dt, char *filename)
 	while (line)
 	{
 		map->rows++;
-		free(line);
+		free_and_null(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -77,14 +77,14 @@ static void	parse_map(t_data *dt, int map_fd)
 		{
 			close(map_fd);
 			free_nullstrarr(row);
-			free(line);
+			free_and_null(line);
 			exit_with_cleanup(dt, EXIT_FAILURE);
 		}
 		x = -1;
 		while (++x < dt->map->cols)
 			init_point(&dt->map->p_arr[dt->map->cols * y + x], x, y, row[x]);
 		free_nullstrarr(row);
-		free(line);
+		free_and_null(line);
 		line = get_next_line(map_fd);
 		y++;
 	}
