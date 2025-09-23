@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 11:38:35 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:31:32 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ static int	handle_key_press(int keycode, t_data *dt)
 void	hooks(t_data *dt)
 {
 	mlx_hook(dt->mlx_win, 17, 0, handle_destroy, dt);
-	mlx_key_hook(dt->mlx_win, handle_key_press, dt);
+	mlx_hook(dt->mlx_win, 2, 1L<<0, handle_key_press, dt);
 }
