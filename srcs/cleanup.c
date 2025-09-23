@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 10:56:45 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:07:50 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static void	exit_window(t_data *dt)
 
 void	exit_with_cleanup(t_data *dt, int status)
 {
-	if (dt->mlx)
-		exit_window(dt);
+	exit_window(dt);
 	if (dt->map)
 	{
 		if (dt->map->p_arr)

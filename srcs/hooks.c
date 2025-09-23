@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 10:23:13 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:38:35 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static int	handle_key_press(int keycode, t_data *dt)
 		zoom_render(dt, ZOOM_STEP);
 	else if (keycode == XK_minus && dt->view.zoom - ZOOM_STEP > 0.001)
 		zoom_render(dt, -ZOOM_STEP);
+	handle_key_arrows (keycode, dt);
 	return (0);
 }
 
@@ -63,5 +64,4 @@ void	hooks(t_data *dt)
 {
 	mlx_hook(dt->mlx_win, 17, 0, handle_destroy, dt);
 	mlx_key_hook(dt->mlx_win, handle_key_press, dt);
-	mlx_key_hook(dt->mlx_win, handle_key_arrows, dt);
 }
