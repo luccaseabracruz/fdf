@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 10:17:56 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:25:32 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FDF_EXT ".fdf"
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
 # define INVALID_EXT_MSG "Error: invalid map extension.\n"
-# define DIFF_COL_SIZE_MSG "Error: diferent row sizes detected.\n"
+# define DIFF_ROW_SIZE_MSG "Error: diferent row size detected.\n"
 # define WIN_HEADER "FDF"
 # ifndef WIN_W
 // #  define WIN_W 1366

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 17:17:54 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 18:19:58 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:25:57 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	validate_row(int map_cols, char **row)
 		cols_size++;
 	if (cols_size != map_cols)
 	{
-		write(STDERR_FILENO, DIFF_COL_SIZE_MSG, ft_strlen(DIFF_COL_SIZE_MSG));
+		write(STDERR_FILENO, DIFF_ROW_SIZE_MSG, ft_strlen(DIFF_ROW_SIZE_MSG));
 		res = false;
 	}
 	return (res);
