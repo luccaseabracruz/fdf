@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/22 16:41:32 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/23 10:18:15 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		render_utils.c \
 		render.c \
 		rotate.c \
-		set_limits.c \
 		validate_input.c \
 )
 SRCS += main.c

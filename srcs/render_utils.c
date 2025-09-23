@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/22 16:29:14 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:17:17 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 #include "libft.h"
 #include "mlx.h"
 #include <math.h>
+
+void	set_limits(t_data *dt)
+{
+	int			i;
+	t_limits	*lim;
+
+	lim = &dt->view.limits;
+	lim->x_min = INT_MAX;
+	lim->x_max = INT_MIN;
+	lim->y_min = INT_MAX;
+	lim->y_max = INT_MIN;
+	i = 0;
+	while (i < dt->map->size)
+	{
+		if (lim->x_min > dt->map->proj_arr[i].x)
+			lim->x_min = dt->map->proj_arr[i].x;
+		if (lim->x_max < dt->map->proj_arr[i].x)
+			lim->x_max = dt->map->proj_arr[i].x;
+		if (lim->y_min > dt->map->proj_arr[i].y)
+			lim->y_min = dt->map->proj_arr[i].y;
+		if (lim->y_max < dt->map->proj_arr[i].y)
+			lim->y_max = dt->map->proj_arr[i].y;
+		i++;
+	}
+}
 
 void	project_points(t_data *dt)
 {
