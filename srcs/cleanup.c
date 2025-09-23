@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/22 14:48:57 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:56:45 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	free_and_null(void *ptr)
 {
-	if (ptr)
+	if (!ptr)
 	{
 		free(ptr);
 		ptr = NULL;
@@ -58,9 +58,15 @@ static void	exit_window(t_data *dt)
 
 void	exit_with_cleanup(t_data *dt, int status)
 {
-	exit_window(dt);
-	free_and_null(dt->map->p_arr);
-	free_and_null(dt->map->proj_arr);
-	free_and_null(dt->map);
+	if (dt->mlx)
+		exit_window(dt);
+	if (dt->map)
+	{
+		if (dt->map->p_arr)
+			free_and_null(dt->map->p_arr);
+		if (dt->map->proj_arr)
+			free_and_null(dt->map->proj_arr);
+		free_and_null(dt->map);
+	}
 	exit(status);
 }
