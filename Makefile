@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/23 10:18:15 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/24 17:27:12 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,19 +26,24 @@ RESET   = \033[0m
 # Names
 NAME                = fdf
 PROJECT_NAME        = FDF
+MAIN                = main.c
+MAIN_BONUS          = main_bonus.c
 
 # Paths
-INC_PATH = includes
+INC_PATH            = includes
 SRCS_PATH           = srcs
-# SRCS_BONUS_PATH     = srcs_bonus
+SRCS_BONUS_PATH     = srcs_bonus
 BUILD_PATH          = build
+
+# Marks
+BONUS_MARK          = .bonus
+MANDATORY_MARK          = .mandatory
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
 		bresenham_line.c \
 		cleanup.c \
 		color_between.c \
-		hooks.c \
 		init_map.c \
 		init_view.c \
 		init_win.c \
@@ -48,11 +53,17 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		rotate.c \
 		validate_input.c \
 )
-SRCS += main.c
 
+SRCS_BONUS = $(addprefix $(SRCS_PATH)/, \
+		hooks_bonus.c \
+		render_bonus.c \
+)
 
 # Object files
 OBJS       = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS:.c=.o)))
+MAIN_OBJ       = $(addprefix $(BUILD_PATH)/, $(MAIN:.c=.o))
+OBJS_BONUS = $(addprefix $(BUILD_PATH)/, $(notdir $(SRCS_BONUS:.c=.o)))
+MAIN_BONUS_OBJ       = $(addprefix $(BUILD_PATH)/, $(MAIN_BONUS:.c=.o))
 
 # LIBFT
 LIBFT_PATH = libft
@@ -88,8 +99,12 @@ MAKE    = make --no-print-directory
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_NAME) $(MLX_NAME) 
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+$(NAME): $(MANDATORY_MARK)
+
+$(MANDATORY_MARK): $(MAIN_OBJ) $(OBJS) $(LIBFT_NAME) $(MLX_NAME)
+	@$(RM) $(BONUS_MARK)
+	@$(TC) $(MANDATORY_MARK)
+	@$(CC) $(CFLAGS) $(MAIN_OBJ) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Executable compiled: $(NAME)$(RESET)"
 
 $(BUILD_PATH)/%.o: %.c | $(BUILD_PATH)
@@ -98,13 +113,15 @@ $(BUILD_PATH)/%.o: %.c | $(BUILD_PATH)
 $(BUILD_PATH)/%.o: $(SRCS_PATH)/%.c | $(BUILD_PATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_PATH)/%.o: $(SRCS_BONUS_PATH)/%.c | $(BUILD_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 $(BUILD_PATH):
 	@$(MKDIR_P) $(BUILD_PATH)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Build directory created$(RESET)"
 
 $(LIBFT_NAME):
 	@$(MAKE) -C $(LIBFT_PATH) bonus
-
 
 $(MLX_NAME):
 	@$(MAKE) -C $(MLX_PATH)
@@ -119,7 +136,12 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: executable '$(NAME)' removed.$(RESET)"
 
-valgrind: $(NAME)
-	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --gen-suppressions=all --log-file=leak_sum.txt ./fdf maps/42.fdf
+bonus: $(BONUS_MARK)
+
+$(BONUS_MARK): $(MAIN_BONUS_OBJ) $(OBJS) $(OBJS_BONUS) $(LIBFT_NAME) $(MLX_NAME)
+	@$(RM) $(MANDATORY_MARK)
+	@$(TC) $(BONUS_MARK)
+	@$(CC) $(CFLAGS) $(MAIN_BONUS_OBJ) $(OBJS) $(OBJS_BONUS) $(LDFLAGS) -o $(NAME)
+	@echo "$(GREEN)[$(PROJECT_NAME)] Bonus executable compiled: $(NAME)$(RESET)"
 
 re: fclean all

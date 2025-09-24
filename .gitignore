@@ -57,6 +57,7 @@ dkms.conf
 
 # marks
 .bonus
+.mandatory
 
 # minilibx-linux
 Makefile.gen

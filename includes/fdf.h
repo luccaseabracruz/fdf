@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 15:32:57 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:21:45 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		absolute(int num);
 void	project_points(t_data *dt);
 void	centralize(t_data *dt);
 void	draw_lines(t_data *dt);
-void	render_map(t_data *dt);
+void	render(t_data *dt);
 void	rotate_render(t_data *dt, char axis, double rot_value);
 void	zoom_render(t_data *dt, double delta);
 void	pan_render(t_data *dt, char direction, int pan_value);

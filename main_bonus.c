@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 12:10:09 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 17:21:47 by lseabra-         ###   ########.fr       */
+/*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
+/*   Updated: 2025/09/24 17:21:42 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
 #include "libft.h"
+#include "mlx.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-void	render(t_data *dt)
+int	main(int argc, char **argv)
 {
-	project_points(dt);
-	rotate(dt);
-	centralize(dt);
-	draw_lines(dt);
-	mlx_put_image_to_window(dt->mlx, dt->mlx_win, dt->mlx_img, 0, 0);
+	t_data	dt;
+
+	if (!validate_input(argc, argv))
+		return (EXIT_FAILURE);
+	ft_bzero(&dt, sizeof(t_data));
+	init_win(&dt);
+	init_map(&dt, argv);
+	init_view(&dt);
+	render(&dt);
+	hooks(&dt);
+	mlx_loop(dt.mlx);
 }
