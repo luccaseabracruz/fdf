@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 18:51:42 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 20:02:41 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 	if (!validate_input(argc, argv))
 		return (EXIT_FAILURE);
 	ft_bzero(&dt, sizeof(t_data));
-	init_win(&dt);
 	init_map(&dt, argv);
+	init_win(&dt);
 	init_view(&dt);
 	render(&dt);
 	hooks(&dt);
