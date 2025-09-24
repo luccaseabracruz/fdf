@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/24 17:27:12 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/24 18:43:15 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = $(addprefix $(SRCS_PATH)/, \
 		bresenham_line.c \
 		cleanup.c \
 		color_between.c \
+		hooks.c \
 		init_map.c \
 		init_view.c \
 		init_win.c \

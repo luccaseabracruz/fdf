@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:08:09 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 17:32:24 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:01:43 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,24 @@ void	pan_render(t_data *dt, char direction, int pan_value)
 		dt->view.pan_offset.y += pan_value;
 	ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 	render(dt);
+}
+
+void	change_proj_render(t_data *dt, char projection)
+{
+	if (projection == 'i')
+	{
+		dt->view.rot_ang.x = degrees_to_radians(ISO_INIT_ANG_X);
+		dt->view.rot_ang.y = degrees_to_radians(ISO_INIT_ANG_Y);
+		dt->view.rot_ang.z = degrees_to_radians(ISO_INIT_ANG_Z);
+		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
+		render(dt);
+	}
+	else if (projection == 'o')
+	{
+		dt->view.rot_ang.x = 0;
+		dt->view.rot_ang.y = 0;
+		dt->view.rot_ang.z = 0;
+		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
+		render(dt);
+	}
 }

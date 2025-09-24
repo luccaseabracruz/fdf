@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 12:51:01 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 17:21:42 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:41:40 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int argc, char **argv)
 	init_map(&dt, argv);
 	init_view(&dt);
 	render(&dt);
-	hooks(&dt);
+	hooks_bonus(&dt);
 	mlx_loop(dt.mlx);
 }

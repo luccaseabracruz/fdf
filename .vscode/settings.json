@@ -57,9 +57,10 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "numbers": "c",
-    "stdbool.h": "c",
-    "stdlib.h": "c",
-    "keysym.h": "c"
-  }
+	"numbers": "c",
+	"stdbool.h": "c",
+	"stdlib.h": "c",
+	"keysym.h": "c",
+	"fdf.h": "c"
+}
 }

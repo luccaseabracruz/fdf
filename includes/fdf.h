@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 17:21:45 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 18:51:05 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	free_and_null(void **ptr);
 void	free_strarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
 int		color_between(t_bresenham b_dt, float ratio);
+int		handle_destroy(t_data *dt);
 void	hooks(t_data *dt);
 void	init_map(t_data *dt, char **argv);
 void	init_view(t_data *dt);
@@ -58,12 +59,16 @@ void	project_points(t_data *dt);
 void	centralize(t_data *dt);
 void	draw_lines(t_data *dt);
 void	render(t_data *dt);
-void	rotate_render(t_data *dt, char axis, double rot_value);
-void	zoom_render(t_data *dt, double delta);
-void	pan_render(t_data *dt, char direction, int pan_value);
 void	rotate(t_data *dt);
 void	set_limits(t_data *dt);
 bool	validate_input(int argc, char **argv);
 bool	validate_row(int row_size, char **row);
+
+// BONUS FUNCTION DECLARATIONS
+void	hooks_bonus(t_data *dt);
+void	rotate_render(t_data *dt, char axis, double rot_value);
+void	zoom_render(t_data *dt, double delta);
+void	pan_render(t_data *dt, char direction, int pan_value);
+void	change_proj_render(t_data *dt, char projection);
 
 #endif
