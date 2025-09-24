@@ -6,14 +6,13 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 16:02:19 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:35:17 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	free_and_null(void **ptr)
 {
