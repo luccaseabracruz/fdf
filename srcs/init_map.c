@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 15:35:53 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:46:38 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	set_dimensions(t_data *dt, char *filename)
 static void	init_point(t_point *point, int x, int y, char *point_dt)
 {
 	char	**arg;
+	int		i;
 
 	arg = ft_split(point_dt, ',');
 	ft_bzero(point, sizeof(t_point));
@@ -55,7 +56,15 @@ static void	init_point(t_point *point, int x, int y, char *point_dt)
 	point->y = y;
 	point->z = ft_atoi(arg[0]);
 	if (arg[1] && arg[1][0] == '0' && (arg[1][1] == 'x' || arg[1][1] == 'X'))
+	{
+		i = 2;
+		while (arg[1][i])
+		{
+			arg[1][i] = ft_toupper(arg[1][i]);
+			i++;
+		}
 		point->color = ft_atoi_base(arg[1] + 2, HEX_BASE);
+	}
 	else
 		point->color = 0xFFFFFFFF;
 	free_strarr(arg);

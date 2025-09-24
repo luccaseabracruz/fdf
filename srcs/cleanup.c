@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 15:32:58 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:02:19 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	exit_window(t_data *dt)
 	if (dt->mlx)
 	{
 		mlx_destroy_display(dt->mlx);
+		free(dt->mlx);
 		dt->mlx = NULL;
 	}
 }

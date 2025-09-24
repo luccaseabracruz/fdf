@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:43:17 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/22 12:12:46 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:16:48 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	pixel_put(t_data *dt, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x <= WIN_W && y >= 0 && y <= WIN_H)
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
 	{
 		dst = dt->addr + (y * dt->line_length + x * (dt->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
