@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 18:51:05 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:48:23 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # define ROT_DEGREES 0.5
 # define ZOOM_STEP 0.05f
 # define PAN_STEP 5
-# define Z_SCALER 0.6f
+# define Z_SCALER 0.5f
+# define Z_SCALER_STEP 0.02f
 # define MAP_FILL 0.5f
 # define PI 3.14159265358979323846
 # define HEX_BASE "0123456789ABCDEF"
@@ -70,5 +71,6 @@ void	rotate_render(t_data *dt, char axis, double rot_value);
 void	zoom_render(t_data *dt, double delta);
 void	pan_render(t_data *dt, char direction, int pan_value);
 void	change_proj_render(t_data *dt, char projection);
+void	change_zscale_render(t_data *dt, double step);
 
 #endif

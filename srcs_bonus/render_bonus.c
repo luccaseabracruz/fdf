@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:08:09 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:01:43 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:51:13 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,11 @@ void	change_proj_render(t_data *dt, char projection)
 		ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
 		render(dt);
 	}
+}
+
+void	change_zscale_render(t_data *dt, double step)
+{
+	dt->view.z_scaler += step;
+	ft_memset(dt->addr, 0, WIN_W * WIN_H * (dt->bits_per_pixel / 8));
+	render(dt);
 }

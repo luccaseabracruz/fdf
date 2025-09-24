@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 10:17:17 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:54:27 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,23 @@ void	project_points(t_data *dt)
 	int		i;
 	t_point	*point;
 	t_point	*proj;
+	t_view	*view;
 
+	view = &dt->view;
 	i = 0;
 	while (i < dt->map->size)
 	{
 		point = &dt->map->p_arr[i];
 		proj = &dt->map->proj_arr[i];
-		proj->x = point->x * dt->view.grid_step * dt->view.zoom;
-		proj->y = point->y * dt->view.grid_step * dt->view.zoom;
-		proj->z = point->z * dt->view.grid_step * dt->view.zoom * Z_SCALER;
+		proj->x = point->x * view->grid_step * view->zoom;
+		proj->y = point->y * view->grid_step * view->zoom;
+		proj->z = point->z * view->grid_step * view->zoom * view->z_scaler;
 		proj->color = point->color;
 		i++;
 	}
 	set_limits(dt);
-	dt->view.center.x = (dt->view.limits.x_max + dt->view.limits.x_min) / 2;
-	dt->view.center.y = (dt->view.limits.y_max + dt->view.limits.y_min) / 2;
+	view->center.x = (view->limits.x_max + view->limits.x_min) / 2;
+	view->center.y = (view->limits.y_max + view->limits.y_min) / 2;
 }
 
 void	centralize(t_data *dt)

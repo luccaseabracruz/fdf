@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:00:28 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:49:03 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ static int	handle_key_press_bonus(int keycode, t_data *dt)
 		change_proj_render(dt, 'i');
 	else if (keycode == XK_o)
 		change_proj_render(dt, 'o');
+	else if (keycode == XK_z)
+		change_zscale_render(dt, -Z_SCALER_STEP);
+	else if (keycode == XK_x)
+		change_zscale_render(dt, Z_SCALER_STEP);
 	else
 	{
 		handle_rot_keys_bonus(keycode, dt);

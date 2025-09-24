@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/22 11:56:54 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:58:53 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_view
 {
 	t_axis		rot_ang;
 	double		grid_step;
+	double		z_scaler;
 	double		rotation[3][3];
 	t_limits	limits;
 	t_point		center;
@@ -75,13 +76,13 @@ typedef struct s_bresenham
 {
 	t_point	p1;
 	t_point	p2;
-	int	dx;
-	int	dy;
-	int	xstep;
-	int	ystep;
+	int		dx;
+	int		dy;
+	int		xstep;
+	int		ystep;
 }	t_bresenham;
 
-typedef struct	s_argb
+typedef struct s_argb
 {
 	int	alpha;
 	int	red;
