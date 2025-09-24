@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 10:25:32 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:32:57 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define ISO_INIT_ANG_X 45
 # define ISO_INIT_ANG_Y 45
 # define ISO_INIT_ANG_Z -30
-# define ROT_DEGREES 2
-# define ZOOM_STEP 0.1f
+# define ROT_DEGREES 0.5
+# define ZOOM_STEP 0.05f
 # define PAN_STEP 5
 # define Z_SCALER 0.6f
 # define MAP_FILL 0.5f
@@ -43,8 +43,8 @@
 
 // FUNCTION DECLARATIONS
 void	bresenham_line(t_data *dt, t_point p1, t_point p2);
-void	free_and_null(void *ptr);
-void	free_nullstrarr(char **arr);
+void	free_and_null(void **ptr);
+void	free_strarr(char **arr);
 void	exit_with_cleanup(t_data *dt, int status);
 int		color_between(t_bresenham b_dt, float ratio);
 void	hooks(t_data *dt);

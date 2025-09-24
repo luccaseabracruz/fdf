@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/22 14:48:54 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:35:53 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	set_dimensions(t_data *dt, char *filename)
 	row = ft_split(line, ' ');
 	while (row[map->cols] && (row[map->cols][0] < 9 || row[map->cols][0] > 13))
 		map->cols++;
-	free_nullstrarr(row);
+	free_strarr(row);
 	while (line)
 	{
 		map->rows++;
-		free_and_null(line);
+		free_and_null((void **)&line);
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -58,7 +58,7 @@ static void	init_point(t_point *point, int x, int y, char *point_dt)
 		point->color = ft_atoi_base(arg[1] + 2, HEX_BASE);
 	else
 		point->color = 0xFFFFFFFF;
-	free_nullstrarr(arg);
+	free_strarr(arg);
 }
 
 static void	parse_map(t_data *dt, int map_fd)
@@ -76,15 +76,15 @@ static void	parse_map(t_data *dt, int map_fd)
 		if (!validate_row(dt->map->cols, row))
 		{
 			close(map_fd);
-			free_nullstrarr(row);
-			free_and_null(line);
+			free_strarr(row);
+			free_and_null((void **)&line);
 			exit_with_cleanup(dt, EXIT_FAILURE);
 		}
 		x = -1;
 		while (++x < dt->map->cols)
 			init_point(&dt->map->p_arr[dt->map->cols * y + x], x, y, row[x]);
-		free_nullstrarr(row);
-		free_and_null(line);
+		free_strarr(row);
+		free_and_null((void **)&line);
 		line = get_next_line(map_fd);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:06:22 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/23 11:07:50 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:32:58 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	free_and_null(void *ptr)
+void	free_and_null(void **ptr)
 {
-	if (!ptr)
+	if (ptr && *ptr)
 	{
-		free(ptr);
-		ptr = NULL;
+		free(*ptr);
+		*ptr = NULL;
 	}
 }
 
-void	free_nullstrarr(char **arr)
+void	free_strarr(char **arr)
 {
 	int	i;
 
 	i = 0;
 	while (arr[i])
 	{
-		free_and_null(arr[i]);
+		free_and_null((void **)&arr[i]);
 		i++;
 	}
-	free_and_null(arr);
+	free_and_null((void **)&arr);
 }
 
 static void	exit_window(t_data *dt)
@@ -62,10 +62,10 @@ void	exit_with_cleanup(t_data *dt, int status)
 	if (dt->map)
 	{
 		if (dt->map->p_arr)
-			free_and_null(dt->map->p_arr);
+			free_and_null((void **)&dt->map->p_arr);
 		if (dt->map->proj_arr)
-			free_and_null(dt->map->proj_arr);
-		free_and_null(dt->map);
+			free_and_null((void **)&dt->map->proj_arr);
+		free_and_null((void **)&dt->map);
 	}
 	exit(status);
 }
