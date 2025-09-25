@@ -6,12 +6,11 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:43:51 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/25 12:37:36 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:38:47 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
 #include "mlx.h"
 #include <stdlib.h>
 #include <X11/keysym.h>
