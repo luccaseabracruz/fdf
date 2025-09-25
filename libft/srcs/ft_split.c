@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:16:47 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/07/10 10:31:19 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:09:49 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static size_t	count_words(char const *s, char c)
 
 	counter = 0;
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] == c && s[i])
 	{
 		i++;

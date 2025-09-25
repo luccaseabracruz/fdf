@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:48:23 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/25 09:55:05 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 # define ISO_INIT_ANG_X 45
 # define ISO_INIT_ANG_Y 45
 # define ISO_INIT_ANG_Z -30
-# define ROT_DEGREES 0.5
+# define ROT_DEGREES 1.0
 # define ZOOM_STEP 0.05f
-# define PAN_STEP 5
+# define PAN_STEP 10
 # define Z_SCALER 0.5f
 # define Z_SCALER_STEP 0.02f
 # define MAP_FILL 0.5f

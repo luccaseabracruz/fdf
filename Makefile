@@ -6,7 +6,7 @@
 #    By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/16 11:32:23 by lseabra-          #+#    #+#              #
-#    Updated: 2025/09/24 18:43:15 by lseabra-         ###   ########.fr        #
+#    Updated: 2025/09/25 10:13:12 by lseabra-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ BUILD_PATH          = build
 
 # Marks
 BONUS_MARK          = .bonus
-MANDATORY_MARK          = .mandatory
+MANDATORY_MARK      = .mandatory
 
 # Source files
 SRCS = $(addprefix $(SRCS_PATH)/, \
@@ -78,7 +78,7 @@ MLX_NAME = $(MLX_PATH)/lib$(MLX_LINK).a
 
 # Compiler and flags
 CC = cc
-CFLAGS =	-Wall -Wextra -Werror -g \
+CFLAGS =	-Wall -Wextra -Werror -O3 -flto -fstrict-aliasing -ffast-math \
 			-I$(INC_PATH) -I$(LIBFT_PATH)/$(INC_PATH) -I$(MLX_PATH)
 LDFLAGS =	-L$(LIBFT_PATH) -l$(LIBFT_LINK) \
 			-L$(MLX_PATH) -l$(MLX_LINK) \
@@ -135,6 +135,8 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(MANDATORY_MARK)
+	@$(RM) $(BONUS_MARK)
 	@echo "$(GREEN)[$(PROJECT_NAME)] Full clean: executable '$(NAME)' removed.$(RESET)"
 
 bonus: $(BONUS_MARK)
