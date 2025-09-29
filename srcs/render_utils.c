@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:51:00 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:54:27 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/28 15:31:50 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include "mlx.h"
 #include <math.h>
 
+/**
+ * @brief Sets the projection limits for the current map view.
+ *
+ * Iterates through all projected points and updates the minimum and maximum
+ * values for both x and y coordinates. These limits are later used to calculate
+ * the center of the map for transformations.
+ *
+ * @param dt Pointer to the main data structure containing map and view info.
+ *
+ * Local variables:
+ * - `lim`: Pointer to the limits structure inside `dt->view`.
+ */
 void	set_limits(t_data *dt)
 {
 	int			i;
@@ -40,6 +52,20 @@ void	set_limits(t_data *dt)
 	}
 }
 
+/**
+ * @brief Projects map points into 2D coordinates with scaling applied.
+ *
+ * Transforms each original map point into projected space based on grid step,
+ * zoom, and z-axis scaling. Copies the color from original points. After
+ * projecting, updates the limits and calculates the center of the projection.
+ *
+ * @param dt Pointer to the main data structure containing map and view info.
+ *
+ * Local variables:
+ * - `point`: Pointer to the original point in the map.
+ * - `proj`: Pointer to the projected point in the map.
+ * - `view`: Pointer to the view structure containing projection parameters.
+ */
 void	project_points(t_data *dt)
 {
 	int		i;
@@ -64,6 +90,18 @@ void	project_points(t_data *dt)
 	view->center.y = (view->limits.y_max + view->limits.y_min) / 2;
 }
 
+/**
+ * @brief Centralizes the projected map inside the window.
+ *
+ * Calculates the offset required to center the map projection in the window and
+ * applies it to all projected points. Also applies the pan offset defined in
+ * the view structure.
+ *
+ * @param dt Pointer to the main data structure containing map and view info.
+ *
+ * Local variables:
+ * - `center_offset`: Offset required to center the projection in the window.
+ */
 void	centralize(t_data *dt)
 {
 	int			i;
@@ -83,6 +121,20 @@ void	centralize(t_data *dt)
 	}
 }
 
+/**
+ * @brief Draws the map grid by connecting projected points with lines.
+ *
+ * Iterates through the projected points and draws horizontal and vertical
+ * connections between adjacent points using Bresenham's line algorithm.
+ *
+ * @param dt Pointer to the main data structure containing map and view info.
+ *
+ * Local variables:
+ * - `proj_arr`: Array of projected points from the map.
+ * - `p1`: Current point to draw from.
+ * - `i`: Row index.
+ * - `j`: Column index.
+ */
 void	draw_lines(t_data *dt)
 {
 	t_point	*proj_arr;

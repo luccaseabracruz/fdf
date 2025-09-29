@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 16:55:20 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 16:46:38 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:50:46 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,24 @@
 #include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h>
-#include <math.h>
 
+/**
+ * @brief Sets the dimensions of the map (rows and columns) and total size.
+ *
+ * Opens the file and reads its lines to determine the number of rows and
+ * columns. Columns are determined from the first line, ignoring whitespace
+ * characters with ASCII between 9 and 13. Rows are counted line by line
+ * until EOF.
+ *
+ * @param dt       Pointer to the main data structure containing the map.
+ * @param filename Path to the map file.
+ *
+ * Local variables:
+ * - `line`: Stores each line read from the file.
+ * - `row`: Array of strings from splitting `line` by spaces.
+ * - `fd`: File descriptor for the map file.
+ * - `map`: Pointer to the map structure in `dt`.
+ */
 static void	set_dimensions(t_data *dt, char *filename)
 {
 	char	*line;
@@ -45,6 +61,21 @@ static void	set_dimensions(t_data *dt, char *filename)
 	map->size = map->cols * dt->map->rows;
 }
 
+/**
+ * @brief Initializes a single point of the map.
+ *
+ * Splits a string containing z-coordinate and optional color, converts
+ * them, and assigns values to the point structure. Default color is white.
+ *
+ * @param point    Pointer to the point to initialize.
+ * @param x        X-coordinate of the point.
+ * @param y        Y-coordinate of the point.
+ * @param point_dt String containing the point z(height) and color.
+ *
+ * Local variables:
+ * - `arg`: Array from splitting the point string by ','.
+ * - `i`: Index used for iterating over hex color string.
+ */
 static void	init_point(t_point *point, int x, int y, char *point_dt)
 {
 	char	**arg;
@@ -70,6 +101,21 @@ static void	init_point(t_point *point, int x, int y, char *point_dt)
 	free_strarr(arg);
 }
 
+/**
+ * @brief Parses the map file and fills the point array.
+ *
+ * Reads each line from the map file, splits it into columns, validates
+ * the row length, and initializes the points in `p_arr`(original points array).
+ *
+ * @param dt      Pointer to the main data structure containing the map.
+ * @param map_fd  File descriptor of the map file.
+ *
+ * Local variables:
+ * - `line`: Current line read from the file.
+ * - `row`: Array of strings obtained from splitting the line.
+ * - `x`: Column index.
+ * - `y`: Row index.
+ */
 static void	parse_map(t_data *dt, int map_fd)
 {
 	char	*line;
@@ -99,6 +145,15 @@ static void	parse_map(t_data *dt, int map_fd)
 	}
 }
 
+/**
+ * @brief Allocates memory for the point arrays in the map.
+ *
+ * Allocates `p_arr` for original points and `proj_arr` for projected
+ * points. Exits with cleanup if allocation fails.
+ *
+ * @param dt Pointer to the main data structure containing the map.
+ * @param fd File descriptor of the map file (closed on failure).
+ */
 static void	alloc_points(t_data *dt, int fd)
 {
 	dt->map->p_arr = ft_calloc(dt->map->size, sizeof(t_point));
@@ -115,6 +170,18 @@ static void	alloc_points(t_data *dt, int fd)
 	}
 }
 
+/**
+ * @brief Initializes the map structure and loads points from the file.
+ *
+ * Opens the file, allocates the map structure, sets dimensions, allocates
+ * point arrays, parses the map, and closes the file.
+ *
+ * @param dt   Pointer to the main data structure.
+ * @param argv Command-line arguments (argv[1] = map file path).
+ *
+ * Local variables:
+ * - `fd`: File descriptor for the map file.
+ */
 void	init_map(t_data *dt, char **argv)
 {
 	int		fd;

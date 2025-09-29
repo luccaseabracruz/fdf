@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 18:23:28 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/19 17:30:40 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:56:16 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include "mlx.h"
 #include <stdlib.h>
 
+/**
+ * @brief Initialize the MLX window and image.
+ *
+ * Sets up the MLX instance, creates a window and an image, and retrieves the 
+ * image data address along with its parameters. Exits the program with cleanup
+ * if any initialization step fails.
+ *
+ * @param dt Pointer to a t_data structure where MLX pointers and image data
+ *           parameters will be stored.
+ */
 void	init_win(t_data *dt)
 {
 	dt->mlx = mlx_init();

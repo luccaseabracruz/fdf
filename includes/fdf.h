@@ -6,17 +6,22 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/25 09:55:05 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/29 11:20:57 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+//#============================================================================#
+//#                                INCLUDES                                    #
+//#============================================================================#
 # include "types.h"
 # include <stdbool.h>
 
-// MACROS
+//#============================================================================#
+//#                                 MACROS                                     #
+//#============================================================================#
 # define FDF_EXT ".fdf"
 # define INVALID_INPUT_MSG "Error: invalid input.\n"
 # define INVALID_EXT_MSG "Error: invalid map extension.\n"
@@ -42,7 +47,10 @@
 # define PI 3.14159265358979323846
 # define HEX_BASE "0123456789ABCDEF"
 
-// FUNCTION DECLARATIONS
+//#============================================================================#
+//#                           FUNCTION PROTOTYPES                              #
+//#============================================================================#
+// srcs/
 void	bresenham_line(t_data *dt, t_point p1, t_point p2);
 void	free_and_null(void **ptr);
 void	free_strarr(char **arr);
@@ -65,7 +73,7 @@ void	set_limits(t_data *dt);
 bool	validate_input(int argc, char **argv);
 bool	validate_row(int row_size, char **row);
 
-// BONUS FUNCTION DECLARATIONS
+// srcs_bonus/
 void	hooks_bonus(t_data *dt);
 void	rotate_render(t_data *dt, char axis, double rot_value);
 void	zoom_render(t_data *dt, double delta);

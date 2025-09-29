@@ -6,13 +6,29 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:08:09 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:51:13 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/28 16:14:10 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
+/**
+ * @file render_bonus.c
+ * @brief Rendering helpers for bonus controls.
+ *
+ * Provides transformations that respond to user input: rotation, zoom, panning,
+ * projection changes, and Z-scale adjustments. Each function clears the frame
+ * buffer before re-rendering the scene.
+ */
+
+/**
+ * @brief Rotates the map around the given axis and re-renders.
+ *
+ * @param dt        Pointer to main program data.
+ * @param axis      Axis to rotate around ('x', 'y', 'z').
+ * @param rot_value Rotation value in degrees.
+ */
 void	rotate_render(t_data *dt, char axis, double rot_value)
 {
 	rot_value = degrees_to_radians(rot_value);
@@ -26,6 +42,12 @@ void	rotate_render(t_data *dt, char axis, double rot_value)
 	render(dt);
 }
 
+/**
+ * @brief Adjusts the zoom level and re-renders.
+ *
+ * @param dt    Pointer to main program data.
+ * @param delta Increment to apply to zoom factor.
+ */
 void	zoom_render(t_data *dt, double delta)
 {
 	dt->view.zoom += delta;
@@ -33,6 +55,16 @@ void	zoom_render(t_data *dt, double delta)
 	render(dt);
 }
 
+/**
+ * @brief Applies panning (horizontal or vertical) and re-renders.
+ *
+ * - `'h'`: Horizontal direction.
+ * - `'v'`: Vertical direction.
+ * 
+ * @param dt        Pointer to main program data.
+ * @param direction Direction of pan ('h' or 'v'W).
+ * @param pan_value Offset value to apply.
+ */
 void	pan_render(t_data *dt, char direction, int pan_value)
 {
 	if (direction == 'h')
@@ -43,6 +75,17 @@ void	pan_render(t_data *dt, char direction, int pan_value)
 	render(dt);
 }
 
+/**
+ * @brief Switches between projection modes and re-renders.
+ *
+ * - `'i'`: Isometric projection (default).
+ * - `'o'`: Orthographic projection.
+ *
+ * @param dt         Pointer to main program data.
+ * @param projection Projection type ('i' or 'o').
+ *
+ * Local variables: None.
+ */
 void	change_proj_render(t_data *dt, char projection)
 {
 	if (projection == 'i')
@@ -63,6 +106,12 @@ void	change_proj_render(t_data *dt, char projection)
 	}
 }
 
+/**
+ * @brief Adjusts the Z-axis scaling factor and re-renders.
+ *
+ * @param dt   Pointer to main program data.
+ * @param step Increment to apply to z_scaler.
+ */
 void	change_zscale_render(t_data *dt, double step)
 {
 	dt->view.z_scaler += step;
