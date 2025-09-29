@@ -6,15 +6,25 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/24 19:58:53 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/29 11:16:57 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
+//#============================================================================#
+//#                                INCLUDES                                    #
+//#============================================================================#
 # include <stdbool.h>
 
+//#============================================================================#
+//#                                 TYPES                                      #
+//#============================================================================#
+
+/**
+ * @brief Represents a 3D point in space with an optional color.
+ */
 typedef struct s_point
 {
 	int		x;
@@ -23,6 +33,9 @@ typedef struct s_point
 	int		color;
 }	t_point;
 
+/**
+ * @brief Represents the map/grid data for the FDF program.
+ */
 typedef struct s_map
 {
 	int		cols;
@@ -32,6 +45,9 @@ typedef struct s_map
 	int		size;
 }	t_map;
 
+/**
+ * @brief Stores minimum and maximum coordinates for the rendered points.
+ */
 typedef struct s_limits
 {
 	int	x_min;
@@ -40,6 +56,9 @@ typedef struct s_limits
 	int	y_max;
 }	t_limits;
 
+/**
+ * @brief Represents rotation along X, Y, Z axes.
+ */
 typedef struct s_axis
 {
 	double	x;
@@ -47,6 +66,9 @@ typedef struct s_axis
 	double	z;
 }	t_axis;
 
+/**
+ * @brief Stores the actual drawing parameters for rendering.
+ */
 typedef struct s_view
 {
 	t_axis		rot_ang;
@@ -59,6 +81,20 @@ typedef struct s_view
 	double		zoom;
 }	t_view;
 
+/**
+ * @struct s_data
+ * @brief Central context structure for the FDF program.
+ *
+ * This structure holds all the essential state needed during runtime:
+ *  - Pointers to MiniLibX instances for window and image management
+ *  - Image buffer address and metadata (bits per pixel, line length, endian)
+ *  - A pointer to the loaded map structure with geometry data
+ *  - The active view configuration (rotation, scaling, panning, zoom, limits)
+ *
+ * It acts as the main "handle" passed across the program, ensuring that
+ * rendering, transformations, and event handling all operate on a consistent
+ * shared state.
+ */
 typedef struct s_data
 {
 	void		*mlx;
@@ -72,6 +108,9 @@ typedef struct s_data
 	t_view		view;
 }	t_data;
 
+/**
+ * @brief Stores parameters for Bresenham line algorithm.
+ */
 typedef struct s_bresenham
 {
 	t_point	p1;
@@ -82,6 +121,9 @@ typedef struct s_bresenham
 	int		ystep;
 }	t_bresenham;
 
+/**
+ * @brief Stores ARGB color components separately.
+ */
 typedef struct s_argb
 {
 	int	alpha;

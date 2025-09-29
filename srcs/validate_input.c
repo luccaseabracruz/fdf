@@ -6,7 +6,7 @@
 /*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 17:17:54 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/28 16:00:02 by lseabra-         ###   ########.fr       */
+/*   Updated: 2025/09/29 11:30:11 by lseabra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	validate_input(int argc, char **argv)
 	}
 	else if (!validate_extension(argv[1], FDF_EXT))
 	{
-		write(STDERR_FILENO, INVALID_EXT_MSG, ft_strlen(INVALID_EXT_MSG));
+		ft_putstr_fd(INVALID_EXT_MSG, STDERR_FILENO);
 		res = false;
 	}
 	return (res);
@@ -106,7 +106,7 @@ bool	validate_row(int map_cols, char **row)
 		cols_size++;
 	if (cols_size != map_cols)
 	{
-		write(STDERR_FILENO, DIFF_ROW_SIZE_MSG, ft_strlen(DIFF_ROW_SIZE_MSG));
+		ft_putstr_fd(DIFF_ROW_SIZE_MSG, STDERR_FILENO);
 		res = false;
 	}
 	return (res);
