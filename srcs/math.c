@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: lucca <lucca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:22:05 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/25 15:02:15 by lseabra-         ###   ########.fr       */
+/*   Updated: 2026/11/02 17:16:56 by lucca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	degrees_to_radians(double degrees)
  *
  * Applies matrix multiplication to transform a 3D point using the given matrix.
  *
- * @param matrix 3x3 transformation matrix.
+ * @param matrix a pointer to the 3x3 transformation matrix.
  * @param point  3D point to transform.
  *
  * Local variables:
@@ -48,7 +48,7 @@ double	degrees_to_radians(double degrees)
  *
  * @return Transformed 3D point.
  */
-t_point	mat_point_mul(double matrix[3][3], t_point point)
+t_point	mat_point_mul(const double (*matrix)[3][3], t_point point)
 {
 	double	cordinates[3];
 	double	res[3];
@@ -65,7 +65,7 @@ t_point	mat_point_mul(double matrix[3][3], t_point point)
 		j = 0;
 		while (j < 3)
 		{
-			res[i] += cordinates[j] * matrix[i][j];
+			res[i] += cordinates[j] * (*matrix)[i][j];
 			j++;
 		}
 		i++;

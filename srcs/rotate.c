@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: lucca <lucca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:41:02 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/28 15:53:26 by lseabra-         ###   ########.fr       */
+/*   Updated: 2026/11/02 17:16:42 by lucca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,11 @@ void	rotate(t_data *dt)
 		proj->x -= dt->view.center.x;
 		proj->y -= dt->view.center.y;
 		set_rotation_x(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *proj);
+		*proj = mat_point_mul(&dt->view.rotation, *proj);
 		set_rotation_y(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *proj);
+		*proj = mat_point_mul(&dt->view.rotation, *proj);
 		set_rotation_z(&dt->view);
-		*proj = mat_point_mul(dt->view.rotation, *proj);
+		*proj = mat_point_mul(&dt->view.rotation, *proj);
 		proj->x += dt->view.center.x;
 		proj->y += dt->view.center.y;
 		i++;

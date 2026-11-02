@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseabra- <lseabra-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: lucca <lucca@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 10:13:34 by lseabra-          #+#    #+#             */
-/*   Updated: 2025/09/29 11:20:57 by lseabra-         ###   ########.fr       */
+/*   Updated: 2026/11/02 17:16:42 by lucca            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init_map(t_data *dt, char **argv);
 void	init_view(t_data *dt);
 void	init_win(t_data *data);
 double	degrees_to_radians(double degrees);
-t_point	mat_point_mul(double matrix[3][3], t_point point);
+t_point	mat_point_mul(const double (*matrix)[3][3], t_point point);
 int		absolute(int num);
 void	project_points(t_data *dt);
 void	centralize(t_data *dt);
