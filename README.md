@@ -45,6 +45,20 @@ using `-Wall -Wextra -Werror`, avoiding global variables, and freeing allocated
 resources correctly. These remain important constraints when reviewing or
 extending the project.
 
+For the [project story](docs/project_story.md) and the [FdF subject](docs/fdf_subject.md), see the linked documents.
+
+### Development Notes
+
+The renderer was built in stages: after setting up input parsing and the
+MiniLibX window, I first worked on displaying map points, then connecting them
+with Bresenham lines. I added projection and rotation before extending the
+bonus viewer with panning, zoom, projection switching, and height scaling.
+
+The project also evolved through fixes for edge cases and resource handling,
+including invalid or empty maps, file-open failures, inconsistent row sizes,
+and a memory leak. These iterations helped make the viewer more robust as its
+rendering and interaction code grew.
+
 ### Demonstrations
 
 The screenshots below show the same renderer across different maps and views:
@@ -263,6 +277,7 @@ contains test maps, and `maps/my_maps/` contains additional maps.
 - [MiniLibX Linux repository](https://github.com/42Paris/minilibx-linux)
 - [Harm Smits' MiniLibX Documentation](https://harm-smits.github.io/42docs/libs/minilibx)
 - [Isometric Projection - The Engineer's Post](https://www.theengineerspost.com/isometric-projection/)
+- [YouTube (The Coding Train) - Matrix Multiplication for 3D Rendering](https://www.youtube.com/watch?v=tzsgS19RRc8)
 - [X.Org documentation](https://www.x.org/wiki/)
 - [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 - [J. E. Bresenham - Algorithm for computer control of a digital plotter](https://web.archive.org/web/20080528040104/http://www.research.ibm.com/journal/sj/041/ibmsjIVRIC.pdf)
